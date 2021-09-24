@@ -3,7 +3,7 @@
 <p align="center">
 Repositorio destinado a la entrega del Trabajo Práctico Integrador de la materia TEOI.
 </p>
-
+<p> 24 / 9 </p>
 <p align="center">
 <img src="https://www.universidades.com.ar/logos/original/logo-universidad-nacional-de-lujan.png" alt="UNLu">
 </p>
