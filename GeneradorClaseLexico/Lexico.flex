@@ -1,4 +1,8 @@
+package main;
 import java_cup.runtime.Symbol;
+import java_cup.runtime.*;
+import java.util.*;
+import jflex.sym;
 
 
 %%
