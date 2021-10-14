@@ -6,7 +6,7 @@ ENDDECLARE.SECTION
 
 PROGRAM.SECTION
 
-PRINT  "Prueba.txt AnalizadorLexico"
+PRINT "Prueba.txt AnalizadorLexico"
 
 contador = 0
 suma = 76.5
