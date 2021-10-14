@@ -1,4 +1,4 @@
-package main;
+package com.tpi.teoi;
 import java_cup.runtime.Symbol;
 import java_cup.runtime.*;
 import java.util.*;

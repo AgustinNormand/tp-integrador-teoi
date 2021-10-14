@@ -4,4 +4,4 @@ java -jar jflex-full-1.7.0.jar Lexico.flex
 
 #mv Lexico.new Lexico.java
 
-mv Lexico.java ../ProyectoTPI/src/main/
+mv Lexico.java ../tpi-teoi/src/main/java/com/tpi/teoi/
