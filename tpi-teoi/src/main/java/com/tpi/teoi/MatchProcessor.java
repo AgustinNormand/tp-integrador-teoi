@@ -43,7 +43,11 @@ public class MatchProcessor {
                 symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
         }
 
-        System.out.println(statement);
+        //System.out.println(statement);
+    }
+
+    public ArrayList<Symbol> get_result(){
+        return symbol_table;
     }
 
     /* Verificacion tamaño tipos de datos */

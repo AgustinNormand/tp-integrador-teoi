@@ -24,6 +24,7 @@ public class Core {
             FileReader f = new FileReader("../Input-Output-TPI/prueba.txt");
             Lexico Lexer = new Lexico(f);
             Lexer.next_token();
+            System.out.println(Lexer.get_result());
         } catch (FileNotFoundException ex) {
             System.out.println("No se encontró el archivo");
         }

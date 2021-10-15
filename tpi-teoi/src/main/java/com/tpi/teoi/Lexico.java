@@ -544,6 +544,9 @@ public class Lexico implements java_cup.runtime.Scanner {
 
   /* user code: */
 	MatchProcessor mp = new MatchProcessor();
+	public ArrayList<com.tpi.teoi.Symbol> get_result(){
+	    return mp.get_result();
+	}
 
 
   /**

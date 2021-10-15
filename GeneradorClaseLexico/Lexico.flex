@@ -93,6 +93,14 @@ OP_DECLARE         = ":="
 %}
 /* */
 
+/* Bloque de finalizacion */
+%{
+	public ArrayList<com.tpi.teoi.Symbol> get_result(){
+	    return mp.get_result();
+	}
+%}
+/* */
+
 %%
 
 <YYINITIAL> {
