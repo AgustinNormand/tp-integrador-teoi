@@ -24,17 +24,26 @@ public class MatchProcessor {
             case "CONST_INT":
                 if (!valid_int(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
+                else
+                    symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
+                else
+                    symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
 
             case "CONST_STRING":
                 if (!valid_string(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
+                else
+                    symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
+
+            default:
+                symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
         }
 
-        symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
+        System.out.println(statement);
     }
 
     /* Verificacion tamaño tipos de datos */
