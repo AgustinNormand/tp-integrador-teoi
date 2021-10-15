@@ -39,6 +39,6 @@ Else{
 
 resul ::= TAKE(+; id; [3])
 
-resul ::= TAKE(+; id; [1,2,3])
+resul ::= TAKE(+; id; [1,2.5,32767])
 
 ENDPROGRAM.SECTION

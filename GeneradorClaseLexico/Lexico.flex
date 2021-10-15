@@ -89,51 +89,57 @@ OP_DECLARE = ":="
 
 /* Bloque de inicializacion */
 %{
-    public String s = "";
+    /* Longitud dada por la consigna */
 	final int MAX_STRING = 30;
-	final int MIN_INT = 0
-	final int MAX_INT = 0;
-	final float MIN_FLOAT = 0
-	final float MAX_FLOAT = 0;
+
+	/* 16 bits integer range -32768 to +32767. Only positives range 0 to +32767*/
+	final int MIN_INT = 0;
+	final int MAX_INT = 32767;
+
+    /* 32 bits float range  to . Only positives range 0 to 65504*/
+	final float MIN_FLOAT = 0;
+	final float MAX_FLOAT = Float.MAX_VALUE;
 
 %}
 
 
 /* Verificacion tamaño tipos de datos */
 %{
-    private boolean verify_real(String x) throws Exception {
-    	float f = Float.parseFloat(x);
-    	if (f < -MAX_FLOAT || f > MAX_FLOAT) {
-    		throw new Exception("La longitud del lexema "+x+" excede la esperada");
-    	}
-    	return true;
-    }
-    private boolean verify_int(String x) throws Exception {
+    private boolean verify_float(String x) {
+        boolean result = true;
         try {
-    		int i = Integer.parseInt(x);
-    		if (i < -MAX_INT || i > MAX_INT) {
-    			throw new Exception("La longitud del lexema "+x+" excede la esperada");
-    		}
-    	}catch (NumberFormatException e) {
-    		throw new Exception("La longitud del lexema "+x+" excede la esperada");
-    	}
-    	return true;
+    	    float f = Float.parseFloat(x);
+    	    if (f < MIN_FLOAT || f > MAX_FLOAT) {
+        		result = false;
+        	}
+        }catch (Exception e) {
+            result = false;
+        }
+       	return result;
     }
 
-    private boolean verify_string(String x) throws Exception {
-        if (x.length() > MAX_STRING) {
-    	    throw new Exception("La longitud del lexema "+x+" excede la esperada");
+    private boolean verify_int(String x) {
+        boolean result = true;
+        try {
+    		int i = Integer.parseInt(x);
+    		if (i < MIN_INT || i > MAX_INT)
+    		    result = false;
+    	}catch (Exception e) {
+    	    result = false;
     	}
-    	return true;
+    	return result;
+    }
+
+    private boolean verify_string(String x) {
+        boolean result = true;
+        if (x.length() > MAX_STRING) {
+    	    result = false;
+    	}
+    	return result;
     }
 %}
 
-
-
-
-
-
-
+/* */
 
 %%
 
@@ -143,11 +149,20 @@ OP_DECLARE = ":="
 
 /* Constantes y Tipos de datos */
 
-{CONST_INT}		{System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());}
+{CONST_INT}		{boolean valid_int = verify_int(yytext());
+                 if (valid_int) System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
+                 else System.out.println("CONST_INT que excede la cantidad permitida "+ yytext());
+                }
 
-{CONST_STRING}      {System.out.println("Token CONS_STRING, encontrado Lexema "+ yytext());}
+{CONST_STRING}      {boolean valid_string = verify_string(yytext());
+                     if (valid_string) System.out.println("Token CONST_STRING, encontrado Lexema "+ yytext());
+                     else System.out.println("CONST_STRING que excede la cantidad permitida "+ yytext());
+                    }
 
-{CONST_FLOAT}       {System.out.println("Token CONST_FLOAT, encontrado Lexema "+ yytext());}
+{CONST_FLOAT}       {boolean valid_float = verify_float(yytext());
+                     if (valid_float) System.out.println("Token CONST_FLOAT, encontrado Lexema "+ yytext());
+                     else System.out.println("CONST_FLOAT que excede la cantidad permitida "+ yytext());
+                    }
 
 {TYPE_INT}      {System.out.println("Token TYPE_INT encontrado, Lexema "+ yytext());}
 

@@ -543,34 +543,48 @@ public class Lexico implements java_cup.runtime.Scanner {
   private int zzFinalHighSurrogate = 0;
 
   /* user code: */
-    public String s = "";
+    /* Longitud dada por la consigna */
 	final int MAX_STRING = 30;
-	final int MAX_INT = Short.MAX_VALUE;
+
+	/* 16 bits integer range -32768 to +32767. Only positives range 0 to +32767*/
+	final int MIN_INT = 0;
+	final int MAX_INT = 32767;
+
+    /* 32 bits float range  to . Only positives range 0 to 65504*/
+	final float MIN_FLOAT = 0;
 	final float MAX_FLOAT = Float.MAX_VALUE;
-    private boolean verify_real(String x) throws Exception {
-    	float f = Float.parseFloat(x);
-    	if (f < -MAX_FLOAT || f > MAX_FLOAT) {
-    		throw new Exception("La longitud del lexema "+x+" excede la esperada");
-    	}
-    	return true;
-    }
-    private boolean verify_int(String x) throws Exception {
+
+    private boolean verify_float(String x) {
+        boolean result = true;
         try {
-    		int i = Integer.parseInt(x);
-    		if (i < -MAX_INT || i > MAX_INT) {
-    			throw new Exception("La longitud del lexema "+x+" excede la esperada");
-    		}
-    	}catch (NumberFormatException e) {
-    		throw new Exception("La longitud del lexema "+x+" excede la esperada");
-    	}
-    	return true;
+    	    float f = Float.parseFloat(x);
+    	    if (f < MIN_FLOAT || f > MAX_FLOAT) {
+        		result = false;
+        	}
+        }catch (Exception e) {
+            result = false;
+        }
+       	return result;
     }
 
-    private boolean verify_string(String x) throws Exception {
-        if (x.length() > MAX_STRING) {
-    	    throw new Exception("La longitud del lexema "+x+" excede la esperada");
+    private boolean verify_int(String x) {
+        boolean result = true;
+        try {
+    		int i = Integer.parseInt(x);
+    		if (i < MIN_INT || i > MAX_INT)
+    		    result = false;
+    	}catch (Exception e) {
+    	    result = false;
     	}
-    	return true;
+    	return result;
+    }
+
+    private boolean verify_string(String x) {
+        boolean result = true;
+        if (x.length() > MAX_STRING) {
+    	    result = false;
+    	}
+    	return result;
     }
 
 
@@ -970,7 +984,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 43: break;
           case 3: 
-            { System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
+            { boolean valid_int = verify_int(yytext());
+                 if (valid_int) System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
+                 else System.out.println("CONST_INT que excede la cantidad permitida "+ yytext());
             } 
             // fall through
           case 44: break;
@@ -1080,7 +1096,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 65: break;
           case 25: 
-            { System.out.println("Token CONS_STRING, encontrado Lexema "+ yytext());
+            { boolean valid_string = verify_string(yytext());
+                     if (valid_string) System.out.println("Token CONST_STRING, encontrado Lexema "+ yytext());
+                     else System.out.println("CONST_STRING que excede la cantidad permitida "+ yytext());
             } 
             // fall through
           case 66: break;
@@ -1090,7 +1108,9 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 67: break;
           case 27: 
-            { System.out.println("Token CONST_FLOAT, encontrado Lexema "+ yytext());
+            { boolean valid_float = verify_float(yytext());
+                     if (valid_float) System.out.println("Token CONST_FLOAT, encontrado Lexema "+ yytext());
+                     else System.out.println("CONST_FLOAT que excede la cantidad permitida "+ yytext());
             } 
             // fall through
           case 68: break;
