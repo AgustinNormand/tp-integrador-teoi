@@ -543,49 +543,7 @@ public class Lexico implements java_cup.runtime.Scanner {
   private int zzFinalHighSurrogate = 0;
 
   /* user code: */
-    /* Longitud dada por la consigna */
-	final int MAX_STRING = 30;
-
-	/* 16 bits integer range -32768 to +32767. Only positives range 0 to +32767*/
-	final int MIN_INT = 0;
-	final int MAX_INT = 32767;
-
-    /* 32 bits float range  to . Only positives range 0 to 65504*/
-	final float MIN_FLOAT = 0;
-	final float MAX_FLOAT = Float.MAX_VALUE;
-
-    private boolean verify_float(String x) {
-        boolean result = true;
-        try {
-    	    float f = Float.parseFloat(x);
-    	    if (f < MIN_FLOAT || f > MAX_FLOAT) {
-        		result = false;
-        	}
-        }catch (Exception e) {
-            result = false;
-        }
-       	return result;
-    }
-
-    private boolean verify_int(String x) {
-        boolean result = true;
-        try {
-    		int i = Integer.parseInt(x);
-    		if (i < MIN_INT || i > MAX_INT)
-    		    result = false;
-    	}catch (Exception e) {
-    	    result = false;
-    	}
-    	return result;
-    }
-
-    private boolean verify_string(String x) {
-        boolean result = true;
-        if (x.length() > MAX_STRING) {
-    	    result = false;
-    	}
-    	return result;
-    }
+	MatchProcessor mp = new MatchProcessor();
 
 
   /**
@@ -979,14 +937,12 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 42: break;
           case 2: 
-            { System.out.println("Token ID encontrado, Lexema "+ yytext());
+            { mp.process_match("ID", yytext());
             } 
             // fall through
           case 43: break;
           case 3: 
-            { boolean valid_int = verify_int(yytext());
-                 if (valid_int) System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
-                 else System.out.println("CONST_INT que excede la cantidad permitida "+ yytext());
+            { mp.process_match("CONST_INT", yytext());
             } 
             // fall through
           case 44: break;
@@ -996,161 +952,157 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 45: break;
           case 5: 
-            { System.out.println("Token SIG_DIV encontrado, Lexema "+ yytext());
+            { mp.process_match("SIG_DIV", yytext());
             } 
             // fall through
           case 46: break;
           case 6: 
-            { System.out.println("Token SIG_MUL encontrado, Lexema "+ yytext());
+            { mp.process_match("SIG_MUL", yytext());
             } 
             // fall through
           case 47: break;
           case 7: 
-            { System.out.println("Token MAYOR, encontrado Lexema "+ yytext());
+            { mp.process_match("MAYOR", yytext());
             } 
             // fall through
           case 48: break;
           case 8: 
-            { System.out.println("Token IGUAL, encontrado Lexema "+ yytext());
+            { mp.process_match("IGUAL}", yytext());
             } 
             // fall through
           case 49: break;
           case 9: 
-            { System.out.println("Token MENOR, encontrado Lexema "+ yytext());
+            { mp.process_match("MENOR", yytext());
             } 
             // fall through
           case 50: break;
           case 10: 
-            { System.out.println("Token SIG_MENOS encontrado, Lexema "+ yytext());
+            { mp.process_match("SIG_MENOS", yytext());
             } 
             // fall through
           case 51: break;
           case 11: 
-            { System.out.println("Token SIG_SUMA encontrado, Lexema "+ yytext());
+            { mp.process_match("SIG_MAS", yytext());
             } 
             // fall through
           case 52: break;
           case 12: 
-            { System.out.println("Token COMA encontrado, Lexema "+ yytext());
+            { mp.process_match("COMA", yytext());
             } 
             // fall through
           case 53: break;
           case 13: 
-            { System.out.println("Token PUNTO_Y_COMA encontrado, Lexema "+ yytext());
+            { mp.process_match("PUNTO_Y_COMA", yytext());
             } 
             // fall through
           case 54: break;
           case 14: 
-            { System.out.println("Token SQR_BRACKET_OPEN, encontrado Lexema "+ yytext());
+            { mp.process_match("SQR_BRACKET_OPEN", yytext());
             } 
             // fall through
           case 55: break;
           case 15: 
-            { System.out.println("Token SQR_BRACKET_CLOSE, encontrado Lexema "+ yytext());
+            { mp.process_match("SQR_BRACKET_CLOSE", yytext());
             } 
             // fall through
           case 56: break;
           case 16: 
-            { System.out.println("Token BRACKET_OPEN, encontrado Lexema "+ yytext());
+            { mp.process_match("BRACKET_OPEN", yytext());
             } 
             // fall through
           case 57: break;
           case 17: 
-            { System.out.println("Token BRACKET_CLOSE, encontrado Lexema "+ yytext());
+            { mp.process_match("BRACKET_CLOSE", yytext());
             } 
             // fall through
           case 58: break;
           case 18: 
-            { System.out.println("Token KEY_OPEN, encontrado Lexema "+ yytext());
+            { mp.process_match("KEY_OPEN", yytext());
             } 
             // fall through
           case 59: break;
           case 19: 
-            { System.out.println("Token KEY_CLOSE, encontrado Lexema "+ yytext());
+            { mp.process_match("KEY_CLOSE", yytext());
             } 
             // fall through
           case 60: break;
           case 20: 
-            { System.out.println("Token IF, encontrado Lexema "+ yytext());
+            { mp.process_match("IF", yytext());
             } 
             // fall through
           case 61: break;
           case 21: 
-            { System.out.println("Token OR, encontrado Lexema "+ yytext());
+            { mp.process_match("OR", yytext());
             } 
             // fall through
           case 62: break;
           case 22: 
-            { System.out.println("Token MAYOR_I, encontrado Lexema "+ yytext());
+            { mp.process_match("MAYOR_I", yytext());
             } 
             // fall through
           case 63: break;
           case 23: 
-            { System.out.println("Token DISTINTO, encontrado Lexema "+ yytext());
+            { mp.process_match("DISTINTO", yytext());
             } 
             // fall through
           case 64: break;
           case 24: 
-            { System.out.println("Token MENOR_I, encontrado Lexema "+ yytext());
+            { mp.process_match("MENOR_I", yytext());
             } 
             // fall through
           case 65: break;
           case 25: 
-            { boolean valid_string = verify_string(yytext());
-                     if (valid_string) System.out.println("Token CONST_STRING, encontrado Lexema "+ yytext());
-                     else System.out.println("CONST_STRING que excede la cantidad permitida "+ yytext());
+            { mp.process_match("CONST_STRING", yytext());
             } 
             // fall through
           case 66: break;
           case 26: 
-            { System.out.println("Token OP_DECLARE encontrado, Lexema "+ yytext());
+            { mp.process_match("OP_DECLARE", yytext());
             } 
             // fall through
           case 67: break;
           case 27: 
-            { boolean valid_float = verify_float(yytext());
-                     if (valid_float) System.out.println("Token CONST_FLOAT, encontrado Lexema "+ yytext());
-                     else System.out.println("CONST_FLOAT que excede la cantidad permitida "+ yytext());
+            { mp.process_match("CONST_FLOAT", yytext());
             } 
             // fall through
           case 68: break;
           case 28: 
-            { System.out.println("Token TYPE_INT encontrado, Lexema "+ yytext());
+            { mp.process_match("TYPE_INT", yytext());
             } 
             // fall through
           case 69: break;
           case 29: 
-            { System.out.println("Token AND, encontrado Lexema "+ yytext());
+            { mp.process_match("AND", yytext());
             } 
             // fall through
           case 70: break;
           case 30: 
-            { System.out.println("Token OP_ASSIGN encontrado, Lexema "+ yytext());
+            { mp.process_match("OP_ASSIGN", yytext());
             } 
             // fall through
           case 71: break;
           case 31: 
-            { System.out.println("Token TAKE, encontrado Lexema "+ yytext());
+            { mp.process_match("TAKE", yytext());
             } 
             // fall through
           case 72: break;
           case 32: 
-            { System.out.println("Token ELSE, encontrado Lexema "+ yytext());
+            { mp.process_match("ELSE", yytext());
             } 
             // fall through
           case 73: break;
           case 33: 
-            { System.out.println("Token TYPE_FLOAT encontrado, Lexema "+ yytext());
+            { mp.process_match("TYPE_FLOAT", yytext());
             } 
             // fall through
           case 74: break;
           case 34: 
-            { System.out.println("Token EXIT, encontrado Lexema "+ yytext());
+            { mp.process_match("EXIT", yytext());
             } 
             // fall through
           case 75: break;
           case 35: 
-            { System.out.println("Token WHILE, encontrado Lexema "+ yytext());
+            { mp.process_match("WHILE", yytext());
             } 
             // fall through
           case 76: break;
@@ -1160,27 +1112,27 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 77: break;
           case 37: 
-            { System.out.println("Token TYPE_STRING encontrado, Lexema "+ yytext());
+            { mp.process_match("TYPE_STRING", yytext());
             } 
             // fall through
           case 78: break;
           case 38: 
-            { System.out.println("Token DEC, encontrado Lexema "+ yytext());
+            { mp.process_match("DEC", yytext());
             } 
             // fall through
           case 79: break;
           case 39: 
-            { System.out.println("Token START, encontrado Lexema "+ yytext());
+            { mp.process_match("START", yytext());
             } 
             // fall through
           case 80: break;
           case 40: 
-            { System.out.println("Token ENDDEC, encontrado Lexema "+ yytext());
+            { mp.process_match("ENDDEC", yytext());
             } 
             // fall through
           case 81: break;
           case 41: 
-            { System.out.println("Token FINALIZE, encontrado Lexema "+ yytext());
+            { mp.process_match("FINALIZE", yytext());
             } 
             // fall through
           case 82: break;

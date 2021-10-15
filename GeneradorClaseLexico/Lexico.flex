@@ -89,56 +89,8 @@ OP_DECLARE = ":="
 
 /* Bloque de inicializacion */
 %{
-    /* Longitud dada por la consigna */
-	final int MAX_STRING = 30;
-
-	/* 16 bits integer range -32768 to +32767. Only positives range 0 to +32767*/
-	final int MIN_INT = 0;
-	final int MAX_INT = 32767;
-
-    /* 32 bits float range  to . Only positives range 0 to 65504*/
-	final float MIN_FLOAT = 0;
-	final float MAX_FLOAT = Float.MAX_VALUE;
-
+	MatchProcessor mp = new MatchProcessor();
 %}
-
-
-/* Verificacion tamaño tipos de datos */
-%{
-    private boolean verify_float(String x) {
-        boolean result = true;
-        try {
-    	    float f = Float.parseFloat(x);
-    	    if (f < MIN_FLOAT || f > MAX_FLOAT) {
-        		result = false;
-        	}
-        }catch (Exception e) {
-            result = false;
-        }
-       	return result;
-    }
-
-    private boolean verify_int(String x) {
-        boolean result = true;
-        try {
-    		int i = Integer.parseInt(x);
-    		if (i < MIN_INT || i > MAX_INT)
-    		    result = false;
-    	}catch (Exception e) {
-    	    result = false;
-    	}
-    	return result;
-    }
-
-    private boolean verify_string(String x) {
-        boolean result = true;
-        if (x.length() > MAX_STRING) {
-    	    result = false;
-    	}
-    	return result;
-    }
-%}
-
 /* */
 
 %%
@@ -149,107 +101,99 @@ OP_DECLARE = ":="
 
 /* Constantes y Tipos de datos */
 
-{CONST_INT}		{boolean valid_int = verify_int(yytext());
-                 if (valid_int) System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
-                 else System.out.println("CONST_INT que excede la cantidad permitida "+ yytext());
-                }
+{CONST_INT}		{mp.process_match("CONST_INT", yytext());}
 
-{CONST_STRING}      {boolean valid_string = verify_string(yytext());
-                     if (valid_string) System.out.println("Token CONST_STRING, encontrado Lexema "+ yytext());
-                     else System.out.println("CONST_STRING que excede la cantidad permitida "+ yytext());
-                    }
+{CONST_STRING}      {mp.process_match("CONST_STRING", yytext());}
 
-{CONST_FLOAT}       {boolean valid_float = verify_float(yytext());
-                     if (valid_float) System.out.println("Token CONST_FLOAT, encontrado Lexema "+ yytext());
-                     else System.out.println("CONST_FLOAT que excede la cantidad permitida "+ yytext());
-                    }
+{CONST_FLOAT}       {mp.process_match("CONST_FLOAT", yytext());}
 
-{TYPE_INT}      {System.out.println("Token TYPE_INT encontrado, Lexema "+ yytext());}
+{TYPE_INT}      {mp.process_match("TYPE_INT", yytext());}
 
-{TYPE_STRING}      {System.out.println("Token TYPE_STRING encontrado, Lexema "+ yytext());}
+{TYPE_STRING}      {mp.process_match("TYPE_STRING", yytext());}
 
-{TYPE_FLOAT}      {System.out.println("Token TYPE_FLOAT encontrado, Lexema "+ yytext());}
+{TYPE_FLOAT}      {mp.process_match("TYPE_FLOAT", yytext());}
 
 /*  */
 
 /* Comparaciones */
 
-{AND}       {System.out.println("Token AND, encontrado Lexema "+ yytext());}
+{AND}       {mp.process_match("AND", yytext());}
 
-{OR}       {System.out.println("Token OR, encontrado Lexema "+ yytext());}
+{OR}       {mp.process_match("OR", yytext());}
 
-{MAYOR}       {System.out.println("Token MAYOR, encontrado Lexema "+ yytext());}
+{MAYOR}       {mp.process_match("MAYOR", yytext());}
 
-{MAYOR_I}       {System.out.println("Token MAYOR_I, encontrado Lexema "+ yytext());}
+{MAYOR_I}       {mp.process_match("MAYOR_I", yytext());}
 
-{MENOR}       {System.out.println("Token MENOR, encontrado Lexema "+ yytext());}
+{MENOR}       {mp.process_match("MENOR", yytext());}
 
-{MENOR_I}       {System.out.println("Token MENOR_I, encontrado Lexema "+ yytext());}
+{MENOR_I}       {mp.process_match("MENOR_I", yytext());}
 
-{IGUAL}       {System.out.println("Token IGUAL, encontrado Lexema "+ yytext());}
+{IGUAL}       {mp.process_match("IGUAL}", yytext());}
 
-{DISTINTO}       {System.out.println("Token DISTINTO, encontrado Lexema "+ yytext());}
+{DISTINTO}       {mp.process_match("DISTINTO", yytext());}
 
 /*  */
 
 /* Palabras reservadas */
 
-{DEC}		{System.out.println("Token DEC, encontrado Lexema "+ yytext());}
+{DEC}		{mp.process_match("DEC", yytext());}
 
-{ENDDEC}		{System.out.println("Token ENDDEC, encontrado Lexema "+ yytext());}
+{ENDDEC}		{mp.process_match("ENDDEC", yytext());}
 
-{START}		{System.out.println("Token START, encontrado Lexema "+ yytext());}
+{START}		{mp.process_match("START", yytext());}
 
-{FINALIZE}		{System.out.println("Token FINALIZE, encontrado Lexema "+ yytext());}
+{FINALIZE}		{mp.process_match("FINALIZE", yytext());}
 
-{IF}		{System.out.println("Token IF, encontrado Lexema "+ yytext());}
+{IF}		{mp.process_match("IF", yytext());}
 
-{WHILE}		{System.out.println("Token WHILE, encontrado Lexema "+ yytext());}
+{WHILE}		{mp.process_match("WHILE", yytext());}
 
-{TAKE}		{System.out.println("Token TAKE, encontrado Lexema "+ yytext());}
+{TAKE}		{mp.process_match("TAKE", yytext());}
 
-{EXIT}     {System.out.println("Token EXIT, encontrado Lexema "+ yytext());}
+{EXIT}     {mp.process_match("EXIT", yytext());}
 
-{ELSE}     {System.out.println("Token ELSE, encontrado Lexema "+ yytext());}
+{ELSE}     {mp.process_match("ELSE", yytext());}
 
 /*  */
 
 /* Simbolos */
 
-{SQR_BRACKET_OPEN}		{System.out.println("Token SQR_BRACKET_OPEN, encontrado Lexema "+ yytext());}
+{SQR_BRACKET_OPEN}		{mp.process_match("SQR_BRACKET_OPEN", yytext());}
 
-{SQR_BRACKET_CLOSE}     {System.out.println("Token SQR_BRACKET_CLOSE, encontrado Lexema "+ yytext());}
+{SQR_BRACKET_CLOSE}     {mp.process_match("SQR_BRACKET_CLOSE", yytext());}
 
-{BRACKET_OPEN}		{System.out.println("Token BRACKET_OPEN, encontrado Lexema "+ yytext());}
+{BRACKET_OPEN}		{mp.process_match("BRACKET_OPEN", yytext());}
 
-{BRACKET_CLOSE}     {System.out.println("Token BRACKET_CLOSE, encontrado Lexema "+ yytext());}
+{BRACKET_CLOSE}     {mp.process_match("BRACKET_CLOSE", yytext());}
 
-{KEY_OPEN}		{System.out.println("Token KEY_OPEN, encontrado Lexema "+ yytext());}
+{KEY_OPEN}		{mp.process_match("KEY_OPEN", yytext());}
 
-{KEY_CLOSE}     {System.out.println("Token KEY_CLOSE, encontrado Lexema "+ yytext());}
+{KEY_CLOSE}     {mp.process_match("KEY_CLOSE", yytext());}
 
-{OP_ASSIGN}		{System.out.println("Token OP_ASSIGN encontrado, Lexema "+ yytext());}
+{OP_ASSIGN}		{mp.process_match("OP_ASSIGN", yytext());}
 
-{OP_DECLARE}		{System.out.println("Token OP_DECLARE encontrado, Lexema "+ yytext());}
+{OP_DECLARE}		{mp.process_match("OP_DECLARE", yytext());}
 
-{COMA}      {System.out.println("Token COMA encontrado, Lexema "+ yytext());}
+{COMA}      {mp.process_match("COMA", yytext());}
 
-{PUNTO_Y_COMA}      {System.out.println("Token PUNTO_Y_COMA encontrado, Lexema "+ yytext());}
+{PUNTO_Y_COMA}      {mp.process_match("PUNTO_Y_COMA", yytext());}
 
 {EspacioBlanco}			{ /* ignore */ }
 
-{SIG_MENOS}     {System.out.println("Token SIG_MENOS encontrado, Lexema "+ yytext());}
+{SIG_MENOS}     {mp.process_match("SIG_MENOS", yytext());}
 
-{SIG_MAS}      {System.out.println("Token SIG_SUMA encontrado, Lexema "+ yytext());}
+{SIG_MAS}      {mp.process_match("SIG_MAS", yytext());}
 
-{SIG_DIV}       {System.out.println("Token SIG_DIV encontrado, Lexema "+ yytext());}
+{SIG_DIV}       {mp.process_match("SIG_DIV", yytext());}
 
-{SIG_MUL}       {System.out.println("Token SIG_MUL encontrado, Lexema "+ yytext());}
+{SIG_MUL}       {mp.process_match("SIG_MUL", yytext());}
 
 /*  */
 
-{ID}		{System.out.println("Token ID encontrado, Lexema "+ yytext());}
+{ID}		{mp.process_match("ID", yytext());}
 
 }
 
 [^]		{ throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
+
