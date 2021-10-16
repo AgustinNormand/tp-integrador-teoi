@@ -15,24 +15,28 @@ public class MatchProcessor {
     final float MIN_FLOAT = 0;
     final float MAX_FLOAT = Float.MAX_VALUE;
 
+    private int token_count = 0;
+
     ArrayList<Symbol> symbol_table = new ArrayList<>();
 
     public void process_match(String token_value, String lexema) {
         String statement = "Token " + token_value + " encontrado, Lexema " + lexema;
+
+        token_count = token_count + 1;
 
         switch (token_value) {
             case "CONST_INT":
                 if (!valid_int(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
                 else
-                    symbol_table.add(new Symbol("_"+lexema, token_value, "---", lexema, "---"));
+                    symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                 break;
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
                 else
-                    symbol_table.add(new Symbol("_"+lexema, token_value, "---", lexema, "---"));
+                    symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                 break;
 
             case "CONST_STRING":
@@ -40,16 +44,16 @@ public class MatchProcessor {
                     statement = token_value + " que excede la cantidad permitida " + lexema;
                 else{
                     lexema = lexema.replaceAll("\"", "");
-                    symbol_table.add(new Symbol("_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
+                    symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
                 }
                 break;
 
             case "ID":
-                symbol_table.add(new Symbol(lexema, token_value, "", "---", "---"));
+                symbol_table.add(new Symbol(String.valueOf(token_count), lexema, token_value, "", "---", "---"));
                 break;
 
             default:
-                symbol_table.add(new Symbol("TOKEN_NAME", token_value, "---", lexema, "---"));
+                symbol_table.add(new Symbol(String.valueOf(token_count), "TOKEN_NAME", token_value, "---", lexema, "---"));
                 break;
         }
 

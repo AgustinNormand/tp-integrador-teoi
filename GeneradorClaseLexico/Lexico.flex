@@ -59,11 +59,11 @@ DEC      = declare.section | DECLARE.SECTION
 ENDDEC   = enddeclare.section | ENDDECLARE.SECTION
 START    = program.section | PROGRAM.SECTION
 FINALIZE = endprogram.section | ENDPROGRAM.SECTION
-IF       = if | IF
-WHILE    = while | WHILE
-TAKE     = take | TAKE
-EXIT     = write | WRITE
-ELSE     = else | ELSE
+IF       = (I|i)(F|f)
+WHILE    = (W|w)(H|h)(i|i)(L|l)(e|e)
+TAKE     = (T|t)(A|a)(K|k)(E|e)
+EXIT     = (W|w)(R|r)(I|i)(T|t)(E|e)
+ELSE     = (E|e)(L|l)(S|s)(E|e)
 /* */
 
 

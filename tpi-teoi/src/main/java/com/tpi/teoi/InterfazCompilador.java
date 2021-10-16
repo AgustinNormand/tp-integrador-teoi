@@ -3,11 +3,13 @@ package com.tpi.teoi;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class InterfazCompilador extends JFrame {
 
@@ -146,18 +148,36 @@ public class InterfazCompilador extends JFrame {
         gbc_resultadoAnalisis.gridwidth = 3;
         gbc_resultadoAnalisis.gridx = 0;
         gbc_resultadoAnalisis.gridy = 8;
-        String[] nombreColumnas = {"Name", "Token", "Type", "Value", "Long"};
+        String[] nombreColumnas = {"N", "Name", "Token", "Type", "Value", "Long"};
         final JTable tabla_simbolos = new JTable();
         DefaultTableModel contactTableModel = (DefaultTableModel) tabla_simbolos.getModel();
         contactTableModel.setColumnIdentifiers(nombreColumnas);
-        tabla_simbolos.getColumn(nombreColumnas[0]).setPreferredWidth(200);
-        tabla_simbolos.getColumn(nombreColumnas[1]).setPreferredWidth(100);
-        tabla_simbolos.getColumn(nombreColumnas[2]).setPreferredWidth(30);
-        tabla_simbolos.getColumn(nombreColumnas[3]).setPreferredWidth(100);
-        tabla_simbolos.getColumn(nombreColumnas[4]).setPreferredWidth(30);
+        tabla_simbolos.getColumn(nombreColumnas[0]).setMinWidth(30);
+        tabla_simbolos.getColumn(nombreColumnas[0]).setMaxWidth(30);
+        tabla_simbolos.getColumn(nombreColumnas[1]).setPreferredWidth(200);
+        tabla_simbolos.getColumn(nombreColumnas[2]).setPreferredWidth(100);
+        tabla_simbolos.getColumn(nombreColumnas[3]).setPreferredWidth(30);
+        tabla_simbolos.getColumn(nombreColumnas[4]).setPreferredWidth(100);
+        tabla_simbolos.getColumn(nombreColumnas[5]).setPreferredWidth(30);
         tabla_simbolos.setAutoCreateRowSorter(true);
+        TableRowSorter<DefaultTableModel> rowSorter = (TableRowSorter<DefaultTableModel>)tabla_simbolos.getRowSorter();
 
+        class IntComparator implements Comparator {
+            public int compare(Object o1, Object o2) {
+                Integer int1 = (Integer)o1;
+                Integer int2 = (Integer)o2;
+                return int1.compareTo(int2);
+            }
 
+            public boolean equals(Object o2) {
+                return this.equals(o2);
+            }
+        }
+
+        rowSorter.setComparator(0, new IntComparator());
+
+        tabla_simbolos.setRowSorter(rowSorter);
+        
         JLabel lblResutadosDelAnlisis = new JLabel("Salida del analizador lexico");
         lblResutadosDelAnlisis.setFont(new Font("Tahoma", Font.PLAIN, 13));
         GridBagConstraints gbc_lblResutadosDelAnlisis = new GridBagConstraints();
@@ -183,7 +203,7 @@ public class InterfazCompilador extends JFrame {
 
                     ArrayList<Symbol> symbols_table = Lexer.get_result();
                     for (Symbol s : symbols_table) {
-                        model.addRow(new String[]{s.getName(), s.getToken(), s.getType(), s.getValue(), String.valueOf(s.getSize())});
+                        model.addRow(new Object[]{Integer.valueOf(s.getOrder()), s.getName(), s.getToken(), s.getType(), s.getValue(), String.valueOf(s.getSize())});
                     }
                     tabla_simbolos.setModel(model);
                     tabla_simbolos.repaint();

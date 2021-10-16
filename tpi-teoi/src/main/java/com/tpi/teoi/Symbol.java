@@ -2,6 +2,8 @@ package com.tpi.teoi;
 
 public class Symbol {
 
+    private String order;
+
     private String name;
 
     private String token;
@@ -12,12 +14,33 @@ public class Symbol {
 
     private String size;
 
-    public Symbol(String name, String token, String type, String value, String size) {
+    public Symbol(String order, String name, String token, String type, String value, String size) {
+        this.order = order;
         this.name = name;
         this.token = token;
         this.type = type;
         this.value = value;
         this.size = size;
+    }
+
+    @Override
+    public String toString() {
+        return "Symbol{" +
+                "order='" + order + '\'' +
+                ", name='" + name + '\'' +
+                ", token='" + token + '\'' +
+                ", type='" + type + '\'' +
+                ", value='" + value + '\'' +
+                ", size='" + size + '\'' +
+                '}';
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(String order) {
+        this.order = order;
     }
 
     public String getName() {
@@ -26,6 +49,14 @@ public class Symbol {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getType() {
@@ -50,24 +81,5 @@ public class Symbol {
 
     public void setSize(String size) {
         this.size = size;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    @Override
-    public String toString() {
-        return "Symbol{" +
-                "name='" + name + '\'' +
-                ", token='" + token + '\'' +
-                ", type='" + type + '\'' +
-                ", value='" + value + '\'' +
-                ", size=" + size +
-                '}';
     }
 }
