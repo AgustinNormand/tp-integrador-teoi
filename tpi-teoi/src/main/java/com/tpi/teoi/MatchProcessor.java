@@ -19,29 +19,29 @@ public class MatchProcessor {
 
     ArrayList<Symbol> symbol_table = new ArrayList<>();
 
-    public void process_match(String token_value, String lexema) {
-        String statement = "Token " + token_value + " encontrado, Lexema " + lexema;
+    ArrayList<String> rejected_statements = new ArrayList<>();
 
+    public void process_match(String token_value, String lexema) {
         token_count = token_count + 1;
 
         switch (token_value) {
             case "CONST_INT":
                 if (!valid_int(lexema))
-                    statement = token_value + " que excede la cantidad permitida " + lexema;
+                    rejected_statements.add("Token numero "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
                 else
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                 break;
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
-                    statement = token_value + " que excede la cantidad permitida " + lexema;
+                    rejected_statements.add("Token numero "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
                 else
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                 break;
 
             case "CONST_STRING":
                 if (!valid_string(lexema))
-                    statement = token_value + " que excede la cantidad permitida " + lexema;
+                    rejected_statements.add("Token numero "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").");
                 else{
                     lexema = lexema.replaceAll("\"", "");
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
@@ -56,12 +56,10 @@ public class MatchProcessor {
                 symbol_table.add(new Symbol(String.valueOf(token_count), "TOKEN_NAME", token_value, "---", lexema, "---"));
                 break;
         }
-
-        //System.out.println(statement);
     }
 
-    public ArrayList<Symbol> get_result(){
-        return symbol_table;
+    public void process_unmatch(String yytext, String yyline) {
+        rejected_statements.add("Caracter rechazado ("+ yytext + ")");
     }
 
     /* Verificacion tamaño tipos de datos */
@@ -76,7 +74,6 @@ public class MatchProcessor {
         }
         return result;
     }
-
 
     private boolean valid_float(String x) {
         boolean result = true;
@@ -93,10 +90,19 @@ public class MatchProcessor {
 
     private boolean valid_string(String x) {
         boolean result = true;
+        x = x.replaceAll("\"", "");
         if (x.length() > MAX_STRING) {
             result = false;
         }
         return result;
+    }
+
+    public ArrayList<Symbol> get_result(){
+        return symbol_table;
+    }
+
+    public ArrayList<String> get_rejected(){
+        return rejected_statements;
     }
 }
 

@@ -17,6 +17,7 @@ public class InterfazCompilador extends JFrame {
     private JTextField txtNombre;
     private FileReader fr;
     private File archivo;
+    ArrayList<String> rejected;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -40,15 +41,15 @@ public class InterfazCompilador extends JFrame {
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         GridBagLayout gbl_contentPane = new GridBagLayout();
-        gbl_contentPane.columnWidths = new int[]{245};
+        gbl_contentPane.columnWidths = new int[]{245, 0};
         gbl_contentPane.rowHeights = new int[]{40, 20, 23, 23, 16, 160, 16, 23, 210, 0};
-        gbl_contentPane.columnWeights = new double[]{1.0};
+        gbl_contentPane.columnWeights = new double[]{1.0, 0.0};
         gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
         contentPane.setLayout(gbl_contentPane);
 
         final TextArea txaArchivo = new TextArea();
         GridBagConstraints gbc_txaArchivo = new GridBagConstraints();
-        gbc_txaArchivo.gridwidth = 3;
+        gbc_txaArchivo.gridwidth = 4;
         gbc_txaArchivo.fill = GridBagConstraints.BOTH;
         gbc_txaArchivo.insets = new Insets(0, 0, 5, 0);
         gbc_txaArchivo.gridx = 0;
@@ -79,7 +80,7 @@ public class InterfazCompilador extends JFrame {
         gbc_btnGuardarArchivo.gridwidth = 1;
         gbc_btnGuardarArchivo.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnGuardarArchivo.insets = new Insets(0, 0, 5, 0);
-        gbc_btnGuardarArchivo.gridx = 2;
+        gbc_btnGuardarArchivo.gridx = 3;
         gbc_btnGuardarArchivo.gridy = 3;
         contentPane.add(btnGuardarArchivo, gbc_btnGuardarArchivo);
 
@@ -113,7 +114,7 @@ public class InterfazCompilador extends JFrame {
         GridBagConstraints gbc_btnAbrirArchivo = new GridBagConstraints();
         gbc_btnAbrirArchivo.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnAbrirArchivo.insets = new Insets(0, 0, 5, 5);
-        gbc_btnAbrirArchivo.gridx = 1;
+        gbc_btnAbrirArchivo.gridx = 2;
         gbc_btnAbrirArchivo.gridy = 3;
         contentPane.add(btnAbrirArchivo, gbc_btnAbrirArchivo);
 
@@ -127,6 +128,7 @@ public class InterfazCompilador extends JFrame {
 
         txtNombre = new JTextField();
         GridBagConstraints gbc_txtNombre = new GridBagConstraints();
+        gbc_txtNombre.gridwidth = 2;
         gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
         gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
         gbc_txtNombre.gridx = 0;
@@ -145,7 +147,7 @@ public class InterfazCompilador extends JFrame {
 
         GridBagConstraints gbc_resultadoAnalisis = new GridBagConstraints();
         gbc_resultadoAnalisis.fill = GridBagConstraints.BOTH;
-        gbc_resultadoAnalisis.gridwidth = 3;
+        gbc_resultadoAnalisis.gridwidth = 4;
         gbc_resultadoAnalisis.gridx = 0;
         gbc_resultadoAnalisis.gridy = 8;
         String[] nombreColumnas = {"N", "Name", "Token", "Type", "Value", "Long"};
@@ -177,7 +179,7 @@ public class InterfazCompilador extends JFrame {
         rowSorter.setComparator(0, new IntComparator());
 
         tabla_simbolos.setRowSorter(rowSorter);
-        
+
         JLabel lblResutadosDelAnlisis = new JLabel("Salida del analizador lexico");
         lblResutadosDelAnlisis.setFont(new Font("Tahoma", Font.PLAIN, 13));
         GridBagConstraints gbc_lblResutadosDelAnlisis = new GridBagConstraints();
@@ -187,7 +189,18 @@ public class InterfazCompilador extends JFrame {
         gbc_lblResutadosDelAnlisis.gridy = 7;
         contentPane.add(lblResutadosDelAnlisis, gbc_lblResutadosDelAnlisis);
 
-
+        final JButton btnNewButton = new JButton("Rechazados");
+        btnNewButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, rejected);
+            }
+        });
+        GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+        gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+        gbc_btnNewButton.gridx = 1;
+        gbc_btnNewButton.gridy = 7;
+        contentPane.add(btnNewButton, gbc_btnNewButton);
+        btnNewButton.setVisible(false);
 
         JButton btnRealizarAnalisis = new JButton("Ejecutar Analizador Lexico");
         btnRealizarAnalisis.addActionListener(new ActionListener() {
@@ -202,6 +215,12 @@ public class InterfazCompilador extends JFrame {
                     model.setRowCount(0);
 
                     ArrayList<Symbol> symbols_table = Lexer.get_result();
+                    rejected = Lexer.get_rejected();
+                    if (rejected.size() > 0)
+                        btnNewButton.setVisible(true);
+                    else
+                        btnNewButton.setVisible(false);
+
                     for (Symbol s : symbols_table) {
                         model.addRow(new Object[]{Integer.valueOf(s.getOrder()), s.getName(), s.getToken(), s.getType(), s.getValue(), String.valueOf(s.getSize())});
                     }
@@ -214,11 +233,11 @@ public class InterfazCompilador extends JFrame {
                 }
             }
         });
-
+        
         GridBagConstraints gbc_btnRealizarAnalisis = new GridBagConstraints();
         gbc_btnRealizarAnalisis.gridwidth = 2;
         gbc_btnRealizarAnalisis.insets = new Insets(0, 0, 5, 0);
-        gbc_btnRealizarAnalisis.gridx = 1;
+        gbc_btnRealizarAnalisis.gridx = 2;
         gbc_btnRealizarAnalisis.gridy = 7;
         contentPane.add(btnRealizarAnalisis, gbc_btnRealizarAnalisis);
         contentPane.add(new JScrollPane(tabla_simbolos), gbc_resultadoAnalisis);

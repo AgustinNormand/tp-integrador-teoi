@@ -98,6 +98,10 @@ OP_DECLARE         = ":="
 	public ArrayList<com.tpi.teoi.Symbol> get_result(){
 	    return mp.get_result();
 	}
+
+	public ArrayList<String> get_rejected(){
+    	    return mp.get_rejected();
+    	}
 %}
 /* */
 
@@ -203,5 +207,5 @@ OP_DECLARE         = ":="
 
 }
 
-[^]		{ throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
+[^]		{ mp.process_unmatch(yytext(), String.valueOf(yyline)); }
 
