@@ -10,9 +10,9 @@ public class Symbol {
 
     private String value;
 
-    private int size;
+    private String size;
 
-    public Symbol(String name, String token, String type, String value, int size) {
+    public Symbol(String name, String token, String type, String value, String size) {
         this.name = name;
         this.token = token;
         this.type = type;
@@ -44,11 +44,11 @@ public class Symbol {
         this.value = value;
     }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(String size) {
         this.size = size;
     }
 

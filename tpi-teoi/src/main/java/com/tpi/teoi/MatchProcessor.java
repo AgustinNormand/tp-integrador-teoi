@@ -25,22 +25,32 @@ public class MatchProcessor {
                 if (!valid_int(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
                 else
-                    symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
+                    symbol_table.add(new Symbol("_"+lexema, token_value, "---", lexema, "---"));
+                break;
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
                 else
-                    symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
+                    symbol_table.add(new Symbol("_"+lexema, token_value, "---", lexema, "---"));
+                break;
 
             case "CONST_STRING":
                 if (!valid_string(lexema))
                     statement = token_value + " que excede la cantidad permitida " + lexema;
-                else
-                    symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
+                else{
+                    lexema = lexema.replaceAll("\"", "");
+                    symbol_table.add(new Symbol("_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
+                }
+                break;
+
+            case "ID":
+                symbol_table.add(new Symbol(lexema, token_value, "", "---", "---"));
+                break;
 
             default:
-                symbol_table.add(new Symbol("TOKEN_NAME", token_value, "TOKEN_TYPE", lexema, 0));
+                symbol_table.add(new Symbol("TOKEN_NAME", token_value, "---", lexema, "---"));
+                break;
         }
 
         //System.out.println(statement);

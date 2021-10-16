@@ -39,7 +39,7 @@ public class InterfazCompilador extends JFrame {
      * Create the frame.
      */
     public InterfazCompilador() {
-        setResizable(false);
+        setResizable(true);
         setTitle("Interfaz Gráfica Compilador - Grupo 1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 544, 642);
@@ -136,18 +136,13 @@ public class InterfazCompilador extends JFrame {
         gbc_lblCodigoDePrueba.gridy = 4;
         contentPane.add(lblCodigoDePrueba, gbc_lblCodigoDePrueba);
 
-        final TextArea resultadoAnalisis = new TextArea();
-        resultadoAnalisis.setEditable(false);
         GridBagConstraints gbc_resultadoAnalisis = new GridBagConstraints();
         gbc_resultadoAnalisis.insets = new Insets(0, 0, 0, 5);
         gbc_resultadoAnalisis.fill = GridBagConstraints.BOTH;
         gbc_resultadoAnalisis.gridwidth = 6;
         gbc_resultadoAnalisis.gridx = 1;
         gbc_resultadoAnalisis.gridy = 9;
-        //contentPane.add(resultadoAnalisis, gbc_resultadoAnalisis);
-
         String [] nombreColumnas={"Name", "Token", "Type", "Value", "Long"};
-        //final Object [][] datosFila = new Object[0][];
         final JTable tabla_simbolos = new JTable();
         DefaultTableModel contactTableModel = (DefaultTableModel) tabla_simbolos.getModel();
         contactTableModel.setColumnIdentifiers(nombreColumnas);
@@ -169,7 +164,6 @@ public class InterfazCompilador extends JFrame {
 
                         ArrayList<Symbol> symbols_table = Lexer.get_result();
                         for (Symbol s: symbols_table) {
-                            System.out.println(s.getName());
                             model.addRow(new String[]{s.getName(), s.getToken(), s.getType(), s.getValue(), String.valueOf(s.getSize())});
                         }
                         tabla_simbolos.setModel(model);

@@ -970,7 +970,7 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 48: break;
           case 8: 
-            { mp.process_match("IGUAL}", yytext());
+            { mp.process_match("IGUAL", yytext());
             } 
             // fall through
           case 49: break;

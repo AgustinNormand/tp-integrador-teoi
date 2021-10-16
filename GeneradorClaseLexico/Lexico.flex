@@ -137,7 +137,7 @@ OP_DECLARE         = ":="
 
 {MENOR_I}               {mp.process_match("MENOR_I", yytext());}
 
-{IGUAL}                 {mp.process_match("IGUAL}", yytext());}
+{IGUAL}                 {mp.process_match("IGUAL", yytext());}
 
 {DISTINTO}              {mp.process_match("DISTINTO", yytext());}
 
