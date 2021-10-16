@@ -5,7 +5,7 @@ diferente en su lenguaje, como operador de asignacion, apertura y cierre de
 ciclos y condicionales, operadores logicos, nombres de tipos, etc. *//
 
 
-DECLARE.SECTION
+DECLARE.SECTIONa
 [suma, contador, d1] := [FLOAT, INT, FLOAT]
 [actual, contar, palabra] := [FLOAT, FLOAT, STRING]
 [var] := [INT]
