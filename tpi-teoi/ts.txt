@@ -1,0 +1,45 @@
+Symbol{order='3', name='suma', token='ID', type='', value='---', size='---'}
+Symbol{order='5', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='7', name='d1', token='ID', type='', value='---', size='---'}
+Symbol{order='18', name='actual', token='ID', type='', value='---', size='---'}
+Symbol{order='20', name='contar', token='ID', type='', value='---', size='---'}
+Symbol{order='22', name='palabra', token='ID', type='', value='---', size='---'}
+Symbol{order='33', name='var', token='ID', type='', value='---', size='---'}
+Symbol{order='42', name='_Prueba.txtAnalizadorLexico', token='CONST_STRING', type='---', value='Prueba.txt AnalizadorLexico', size='27'}
+Symbol{order='43', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='45', name='_0', token='CONST_INT', type='---', value='0', size='---'}
+Symbol{order='46', name='suma', token='ID', type='', value='---', size='---'}
+Symbol{order='48', name='_76.5', token='CONST_FLOAT', type='---', value='76.5', size='---'}
+Symbol{order='49', name='contar', token='ID', type='', value='---', size='---'}
+Symbol{order='51', name='_18.22', token='CONST_FLOAT', type='---', value='18.22', size='---'}
+Symbol{order='54', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='56', name='_9', token='CONST_INT', type='---', value='9', size='---'}
+Symbol{order='59', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='61', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='63', name='_1', token='CONST_INT', type='---', value='1', size='---'}
+Symbol{order='64', name='actual', token='ID', type='', value='---', size='---'}
+Symbol{order='67', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='69', name='_0.342', token='CONST_FLOAT', type='---', value='0.342', size='---'}
+Symbol{order='73', name='contador', token='ID', type='', value='---', size='---'}
+Symbol{order='76', name='contar', token='ID', type='', value='---', size='---'}
+Symbol{order='78', name='_4.67', token='CONST_FLOAT', type='---', value='4.67', size='---'}
+Symbol{order='81', name='suma', token='ID', type='', value='---', size='---'}
+Symbol{order='83', name='suma', token='ID', type='', value='---', size='---'}
+Symbol{order='85', name='actual', token='ID', type='', value='---', size='---'}
+Symbol{order='88', name='_Lavariablesuma', token='CONST_STRING', type='---', value='La variable suma', size='16'}
+Symbol{order='92', name='actual', token='ID', type='', value='---', size='---'}
+Symbol{order='94', name='_2', token='CONST_INT', type='---', value='2', size='---'}
+Symbol{order='98', name='actual', token='ID', type='', value='---', size='---'}
+Symbol{order='100', name='_0', token='CONST_INT', type='---', value='0', size='---'}
+Symbol{order='105', name='_actualesmayorque2ydistintode', token='CONST_STRING', type='---', value='actualesmayorque2ydistintode', size='28'}
+Symbol{order='106', name='palabra', token='ID', type='', value='---', size='---'}
+Symbol{order='108', name='_esmayor', token='CONST_STRING', type='---', value='es mayor', size='8'}
+Symbol{order='113', name='_noesmayorque2', token='CONST_STRING', type='---', value='no es mayor que 2', size='17'}
+Symbol{order='115', name='resul', token='ID', type='', value='---', size='---'}
+Symbol{order='121', name='id', token='ID', type='', value='---', size='---'}
+Symbol{order='124', name='_3', token='CONST_INT', type='---', value='3', size='---'}
+Symbol{order='127', name='resul', token='ID', type='', value='---', size='---'}
+Symbol{order='133', name='id', token='ID', type='', value='---', size='---'}
+Symbol{order='136', name='_1', token='CONST_INT', type='---', value='1', size='---'}
+Symbol{order='138', name='_2.5', token='CONST_FLOAT', type='---', value='2.5', size='---'}
+Symbol{order='140', name='_32767', token='CONST_INT', type='---', value='32767', size='---'}

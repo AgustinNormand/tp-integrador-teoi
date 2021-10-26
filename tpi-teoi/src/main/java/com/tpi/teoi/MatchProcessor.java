@@ -3,6 +3,11 @@ package com.tpi.teoi;
 import java.util.ArrayList;
 
 public class MatchProcessor {
+	
+	/*
+	 * Upgrade: la lista "symbol_table" ahora solo almacena CONST/ID,
+	 * y la lista "lexems_table" almacena todos los lexemas/token.  
+	 */
 
     /* Longitud dada por la consigna */
     final int MAX_STRING = 30;
@@ -18,43 +23,54 @@ public class MatchProcessor {
     private int token_count = 0;
 
     ArrayList<Symbol> symbol_table = new ArrayList<>();
-
+    
     ArrayList<String> rejected_statements = new ArrayList<>();
+    
+    /* Lista que almacena todos los Lexemas y Tokens */ 
+    ArrayList<Symbol> lexems_table = new ArrayList<>();
+
 
     public void process_match(String token_value, String lexema) {
         token_count = token_count + 1;
+        
 
         switch (token_value) {
             case "CONST_INT":
-                if (!valid_int(lexema))
-                    rejected_statements.add("Token numero "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
-                else
+                if (!valid_int(lexema)) 
+                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
+                else{					
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                }
                 break;
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
-                    rejected_statements.add("Token numero "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
-                else
+                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
+                else{
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                }
                 break;
 
             case "CONST_STRING":
                 if (!valid_string(lexema))
-                    rejected_statements.add("Token numero "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").");
+                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").");
                 else{
                     lexema = lexema.replaceAll("\"", "");
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
+                    lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
 
             case "ID":
                 symbol_table.add(new Symbol(String.valueOf(token_count), lexema, token_value, "", "---", "---"));
-                break;
+                lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+            break;
 
-            default:
-                symbol_table.add(new Symbol(String.valueOf(token_count), "TOKEN_NAME", token_value, "---", lexema, "---"));
-                break;
+            default: 
+            	lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+            break;  
         }
     }
 
@@ -62,7 +78,6 @@ public class MatchProcessor {
         rejected_statements.add("Caracter rechazado ("+ yytext + ")");
     }
 
-    /* Verificacion tamaño tipos de datos */
     private boolean valid_int(String x) {
         boolean result = true;
         try {
@@ -104,6 +119,8 @@ public class MatchProcessor {
     public ArrayList<String> get_rejected(){
         return rejected_statements;
     }
+    
+    public ArrayList<Symbol> get_result_lexemas(){
+        return lexems_table;
+    }
 }
-
-

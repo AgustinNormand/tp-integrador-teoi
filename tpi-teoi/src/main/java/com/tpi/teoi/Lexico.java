@@ -535,9 +535,15 @@ public class Lexico implements java_cup.runtime.Scanner {
 	}
 
 	public ArrayList<String> get_rejected(){
-    	    return mp.get_rejected();
-    	}
-
+		return mp.get_rejected();
+    }
+	
+	/*
+	 * Método que solicita a la clase MatchProcessor la lista de lexemas/tokens
+	 */
+	public ArrayList<com.tpi.teoi.Symbol> get_result_lexemas(){
+	    return mp.get_result_lexemas();
+	}
 
   /**
    * Creates a new scanner

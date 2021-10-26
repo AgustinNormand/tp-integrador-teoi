@@ -102,6 +102,11 @@ OP_DECLARE         = ":="
 	public ArrayList<String> get_rejected(){
     	    return mp.get_rejected();
     	}
+
+    public ArrayList<com.tpi.teoi.Symbol> get_result_lexemas(){
+	    return mp.get_result_lexemas();
+	}	
+    	
 %}
 /* */
 
