@@ -269,7 +269,7 @@ public class InterfazCompilador extends JFrame {
                    }
                    
                    for (Symbol l : lexemas_table) {
-                	   modelex.addRow(new Object[] {l.getOrder(), l.getValue(), l.getToken()} );
+                	   modelex.addRow(new Object[]{Integer.valueOf(l.getOrder()), l.getValue(), l.getToken()} );
                    }
                     
                    tabla_simbolos.setModel(model);
@@ -294,7 +294,7 @@ public class InterfazCompilador extends JFrame {
                    			bw.newLine();
                    		}
                    		
-                   		JOptionPane.showMessageDialog(null, "Se generó un archivo ts.txt");
+                   		//JOptionPane.showMessageDialog(null, "Se generó un archivo ts.txt");
                    		bw.close();
                    }
         		} catch (Exception ex) {
