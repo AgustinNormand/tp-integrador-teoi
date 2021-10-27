@@ -37,7 +37,7 @@ public class MatchProcessor {
         switch (token_value) {
             case "CONST_INT":
                 if (!valid_int(lexema)) 
-                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
+                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
                 else{					
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
@@ -46,7 +46,7 @@ public class MatchProcessor {
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
-                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")");
+                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
                 else{
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
@@ -55,7 +55,7 @@ public class MatchProcessor {
 
             case "CONST_STRING":
                 if (!valid_string(lexema))
-                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").");
+                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").\n");
                 else{
                     lexema = lexema.replaceAll("\"", "");
                     symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
@@ -75,7 +75,7 @@ public class MatchProcessor {
     }
 
     public void process_unmatch(String yytext, String yyline) {
-        rejected_statements.add("Caracter rechazado ("+ yytext + ")");
+        rejected_statements.add("Caracter rechazado ("+ yytext + ")\n");
     }
 
     private boolean valid_int(String x) {
