@@ -239,16 +239,16 @@ OP_DECLARE         = ":="
 {SIG_MAS}               	{mp.process_match("SIG_MAS", yytext());
 				return new Symbol(sym.SIG_MAS,yytext();}}
 
-{SIG_DIV}               	{mp.process_match("SIG_DIV", yytext());}
+{SIG_DIV}               	{mp.process_match("SIG_DIV", yytext());
 				return new Symbol(sym.SIG_DIV,yytext();}
 
 {SIG_MUL}               	{mp.process_match("SIG_MUL", yytext());
-				return new Symbol(sym.SIG_MUL,yytext();}}
+				return new Symbol(sym.SIG_MUL,yytext();}
 
 /*  */
 
 {ID}	            		{mp.process_match("ID", yytext());
-				return new Symbol(sym.ID,yytext();}}
+				return new Symbol(sym.ID,yytext();}
 
 }
 
