@@ -10,15 +10,21 @@ import java.util.List;
 parser code
 {:
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
- 	public static void main(String[] arg){ 
-  	/* Crea un objeto parser */ 
-  		parser parserObj = new parser(); 
-  	/* Asigna el Scanner */ 
-  	Scanner miAnalizadorLexico = new Yylex(new 		InputStreamReader(System.in)); 
-  	parserObj.setScanner(miAnalizadorLexico); 
-  	try{ parserObj.parse(); 
-  	}catch(Exception x){ 
-  		System.out.println("Error fatal."); 
-  } 
- } 
- :}; 
+ 	
+ 	public void sintax(Symbol s){
+ 		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
+ 		s + "no reconocio. valor" + s.value);
+ 	} 
+ :}
+ 
+action code
+{:
+:}
+
+
+
+/*DECLARACION DE TERMINALES (TOKEN DEL ANALIZADOR LEXICO) */
+
+terminal LETRA, DIGITO, PRIMER_NUMERO, CARACTERES_ESPECIALES, ID, EspacioBlanco, COMMENT_BEG, COMMENT_END, COMMENT, CONST_INT, CONST_STRING, CONST_FLOAT, TYPE_INT, TYPE_STRING, TYPE_FLOAT, AND, OR, IGUAL, DISTINTO, MAYOR, MAYOR_I, MENOR, MENOR_I, DEC, ENDDEC, START, FINALIZE, IF, WIHILE, TAKE, EXIT, ELSE, SIG_MENOS, SIG_MAS, SIG_DIV, SIG_MUL, COMA, PUNTO, PUNTO_Y_COMA, COM, SQR_BRACKET_OPEN, SQR_BRACKET_CLOSE, BRACKET_OPEN, BRACKET_CLOSE, KEY_OPEN, KEY_CLOSE, OP_ASSIGN, OP_DECLARE
+
+
