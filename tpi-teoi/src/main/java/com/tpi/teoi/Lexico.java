@@ -542,7 +542,8 @@ public class Lexico implements java_cup.runtime.Scanner {
     public ArrayList<com.tpi.teoi.SymbolMe> get_result_lexemas(){
 	    return mp.get_result_lexemas();
 	}	
-    	
+    
+    
 
 
   /**
