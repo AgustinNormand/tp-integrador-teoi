@@ -22,12 +22,12 @@ public class MatchProcessor {
 
     private int token_count = 0;
 
-    ArrayList<Symbol> symbol_table = new ArrayList<>();
+    ArrayList<SymbolMe> symbol_table = new ArrayList<>();
     
     ArrayList<String> rejected_statements = new ArrayList<>();
     
     /* Lista que almacena todos los Lexemas y Tokens */ 
-    ArrayList<Symbol> lexems_table = new ArrayList<>();
+    ArrayList<SymbolMe> lexems_table = new ArrayList<>();
 
 
     public void process_match(String token_value, String lexema) {
@@ -39,8 +39,8 @@ public class MatchProcessor {
                 if (!valid_int(lexema)) 
                     rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
                 else{					
-                    symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
-                    lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                    symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
 
@@ -48,8 +48,8 @@ public class MatchProcessor {
                 if (!valid_float(lexema))
                     rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
                 else{
-                    symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
-                    lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                    symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
 
@@ -58,18 +58,18 @@ public class MatchProcessor {
                     rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").\n");
                 else{
                     lexema = lexema.replaceAll("\"", "");
-                    symbol_table.add(new Symbol(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
-                    lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                    symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
+                    lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
 
             case "ID":
-                symbol_table.add(new Symbol(String.valueOf(token_count), lexema, token_value, "", "---", "---"));
-                lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                symbol_table.add(new SymbolMe(String.valueOf(token_count), lexema, token_value, "", "---", "---"));
+                lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
             break;
 
             default: 
-            	lexems_table.add(new Symbol(String.valueOf(token_count), "", token_value, "", lexema, ""));
+            	lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
             break;  
         }
     }
@@ -112,7 +112,7 @@ public class MatchProcessor {
         return result;
     }
 
-    public ArrayList<Symbol> get_result(){
+    public ArrayList<SymbolMe> get_result(){
         return symbol_table;
     }
 
@@ -120,7 +120,7 @@ public class MatchProcessor {
         return rejected_statements;
     }
     
-    public ArrayList<Symbol> get_result_lexemas(){
+    public ArrayList<SymbolMe> get_result_lexemas(){
         return lexems_table;
     }
 }

@@ -40,72 +40,72 @@ start  with 	comienzo_programa;
 
 comienzo_programa ::= declaracion_programa programa {:mps.addString("comienzo_programa Compila correctamente 																				llegando al simbolo start");:};
 
-declaracion_programa ::= DEC bloque_definicion ENDDEC {:mps.addString(" Declaracion_programa regla[1]"):};
+declaracion_programa ::= DEC bloque_definicion ENDDEC {:mps.addString(" Declaracion_programa regla[1]");:};
 
-bloque_definicion ::= renglon_definicion {:mps.addString(" bloque_definicion regla[2]"):};	
+bloque_definicion ::= renglon_definicion {:mps.addString(" bloque_definicion regla[2]");:};	
 
-bloque_definicion ::= bloque_definicion renglon_definicion {:mps.addString(" bloque_definicion regla[3]"):};	
+bloque_definicion ::= bloque_definicion renglon_definicion {:mps.addString(" bloque_definicion regla[3]");:};	
 
-renglon_definicion	::= inicial separador final {:mps.addString(" renglon_definicion regla[4]"):};	
+renglon_definicion	::= inicial separador final {:mps.addString(" renglon_definicion regla[4]");:};	
 
-inicial ::= SQR_BRACKET_OPEN ID {:mps.addString(" inicial regla[5]"):};	
+inicial ::= SQR_BRACKET_OPEN ID {:mps.addString(" inicial regla[5]");:};	
 
-final ::= TYPE_INT SQR_BRACKET_CLOSE {:mps.addString(" final regla[6]"):};	
+final ::= TYPE_INT SQR_BRACKET_CLOSE {:mps.addString(" final regla[6]");:};	
 
-final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:mps.addString(" final regla[7]"):};	
+final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:mps.addString(" final regla[7]");:};	
 
-final ::= TYPE_STRING SQR_BRACKET_CLOSE {:mps.addString(" final regla[8]"):};	
+final ::= TYPE_STRING SQR_BRACKET_CLOSE {:mps.addString(" final regla[8]");:};	
 
-separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN {:mps.addString(" bloque_definicion regla[9]"):};
+separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN {:mps.addString(" bloque_definicion regla[9]");:};
 
-separador::= COMA ID separador TYPE_INT COMA | COMA ID separador TYPE_FLOAT COMA | COMA ID separador TYPE_STRING COMA 														{:mps.addString(" separador regla[10]"):};
+separador::= COMA ID separador TYPE_INT COMA | COMA ID separador TYPE_FLOAT COMA | COMA ID separador TYPE_STRING COMA 														{:mps.addString(" separador regla[10]");:};
 
-programa ::= START lista_de_sentencias FINALIZE {:mps.addString(" programa regla[11]"):};
+programa ::= START lista_de_sentencias FINALIZE {:mps.addString(" programa regla[11]");:};
 
-lista_de_sentencias ::=  sentencia {:mps.addString(" lista de sentencias sentencia regla[12]"):};
+lista_de_sentencias ::=  sentencia {:mps.addString(" lista de sentencias sentencia regla[12]");:};
 
-lista_de_sentencias ::= lista_de_sentencias sentencia {:mps.addString(" lista de sentencias regla[13]"):};
+lista_de_sentencias ::= lista_de_sentencias sentencia {:mps.addString(" lista de sentencias regla[13]");:};
 
-bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:mps.addString(" bloque_condicion regla[14]"):};
+bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:mps.addString(" bloque_condicion regla[14]");:};
 
-bloque_sentencias ::= SQR_BRACKET_OPEN lista_de_sentencias SQR_BRACKET_CLOSE	{:mps.addString(" bloque_sentencias regla[16]"):};
+bloque_sentencias ::= SQR_BRACKET_OPEN lista_de_sentencias SQR_BRACKET_CLOSE	{:mps.addString(" bloque_sentencias regla[16]");:};
 
-sentencia ::= asignacion {:mps.addString(" sentencia regla[17]"):};
+sentencia ::= asignacion {:mps.addString(" sentencia regla[17]");:};
 
-sentencia ::= iteracion {:mps.addString(" senetencia regla[18]"):};
+sentencia ::= iteracion {:mps.addString(" senetencia regla[18]");:};
 
-sentencia ::= seleccion{:mps.addString(" sentencia regla[19]"):};
+sentencia ::= seleccion{:mps.addString(" sentencia regla[19]");:};
 
-asignacion ::= ID OP_ASSIGN expresion{:mps.addString(" asignacion regla[20]"):};
+asignacion ::= ID OP_ASSIGN expresion{:mps.addString(" asignacion regla[20]");:};
 
-seleccion ::= IF bloque_condicion bloque_sentencias{:mps.addString(" seleccion regla[21]"):};
+seleccion ::= IF bloque_condicion bloque_sentencias{:mps.addString(" seleccion regla[21]");:};
 
-seleccion  ::= IF bloque_condicion bloque_sentencias ELSE bloque_sentencias{:mps.addString("seleccion regla[22]"):};
+seleccion  ::= IF bloque_condicion bloque_sentencias ELSE bloque_sentencias{:mps.addString("seleccion regla[22]");:};
 
-iteracion ::= WHILE bloque_condicion  bloque_sentencias{:mps.addString(" iteracionregla[23]"):};
+iteracion ::= WHILE bloque_condicion  bloque_sentencias{:mps.addString(" iteracionregla[23]");:};
 
-condicion ::= comparacion{:mps.addString(" condicion regla[24]"):};
+condicion ::= comparacion{:mps.addString(" condicion regla[24]");:};
 
-condicion ::= comparacion AND comparacion{:mps.addString(" condicionregla[25]"):};
+condicion ::= comparacion AND comparacion{:mps.addString(" condicionregla[25]");:};
 
-condicion ::= comparacion OR comparacion{:mps.addString(" condicion regla[26]"):};
+condicion ::= comparacion OR comparacion{:mps.addString(" condicion regla[26]");:};
 
-comparacion ::= expresion comparador expresion{:mps.addString(" comparacion regla[27]"):};
+comparacion ::= expresion comparador expresion{:mps.addString(" comparacion regla[27]");:};
 
-comparador ::= MAYOR | MAYOR_I | MENOR | MENOR_I | IGUAL | DISTINTO{:mps.addString(" comparador regla[28]"):};
+comparador ::= MAYOR | MAYOR_I | MENOR | MENOR_I | IGUAL | DISTINTO{:mps.addString(" comparador regla[28]");:};
 
-expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | termino{:mps.addString("expresion regla[29]"):};
+expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | termino{:mps.addString("expresion regla[29]");:};
 
-termino ::= termino SIG_MUL factor | termino SIG_DIV factor |  factor{:mps.addString(" termino regla[30]"):};
+termino ::= termino SIG_MUL factor | termino SIG_DIV factor |  factor{:mps.addString(" termino regla[30]");:};
 
-factor ::= BRACKET_OPEN expresion BRACKET_CLOSE | ID | CONST_FLOAT | CONST_INT |take{:mps.addString(" factor  regla[31]"):};
+factor ::= BRACKET_OPEN expresion BRACKET_CLOSE | ID | CONST_FLOAT | CONST_INT |take{:mps.addString(" factor  regla[31]");:};
 
-write ::= WRITE CONST_FLOAT | WRITE CONST_INT | WRITE CONST_STRING | WRITE ID	{:mps.addString("write regla[32]"):};
+write ::= WRITE CONST_FLOAT | WRITE CONST_INT | WRITE CONST_STRING | WRITE ID	{:mps.addString("write regla[32]");:};
 
-lista_constantes::= lista_constantes COMA CONST_INT | CONST_INT {:mps.addString("lista_constantes regla[33]"):};
+lista_constantes::= lista_constantes COMA CONST_INT | CONST_INT {:mps.addString("lista_constantes regla[33]");:};
 
 take::= TAKE BRACKET_OPEN SIG_MAS PUNTO_Y_COMA ID PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes  SQR_BRACKET_CLOSE BRACKET_CLOSE 
-																{:mps.addString("lista_constantes regla[35]"):};
+																{:mps.addString("lista_constantes regla[35]");:};
 
 
 

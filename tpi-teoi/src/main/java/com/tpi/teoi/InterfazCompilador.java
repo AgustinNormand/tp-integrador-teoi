@@ -255,8 +255,8 @@ public class InterfazCompilador extends JFrame {
                    model.setRowCount(0);
                    modelex.setRowCount(0);
                    
-                   ArrayList<Symbol> symbols_table = Lexer.get_result();
-                   ArrayList<Symbol> lexemas_table = Lexer.get_result_lexemas();
+                   ArrayList<SymbolMe> symbols_table = Lexer.get_result();
+                   ArrayList<SymbolMe> lexemas_table = Lexer.get_result_lexemas();
                    rejected = Lexer.get_rejected();
                    
                    if (rejected.size() > 0)
@@ -264,11 +264,11 @@ public class InterfazCompilador extends JFrame {
                    else
                 	   btnNewButton.setVisible(false);
                    
-                   for (Symbol s : symbols_table) {
+                   for (SymbolMe s : symbols_table) {
                 	   model.addRow(new Object[]{Integer.valueOf(s.getOrder()), s.getName(), s.getToken(), s.getType(), s.getValue(), String.valueOf(s.getSize())});
                    }
                    
-                   for (Symbol l : lexemas_table) {
+                   for (SymbolMe l : lexemas_table) {
                 	   modelex.addRow(new Object[]{Integer.valueOf(l.getOrder()), l.getValue(), l.getToken()} );
                    }
                     
@@ -289,7 +289,7 @@ public class InterfazCompilador extends JFrame {
                    		FileWriter fw = new FileWriter(file);
                    		BufferedWriter bw = new BufferedWriter(fw);
        			
-                   		for (Symbol s : symbols_table) {
+                   		for (SymbolMe s : symbols_table) {
                    			bw.write(s.toString());
                    			bw.newLine();
                    		}

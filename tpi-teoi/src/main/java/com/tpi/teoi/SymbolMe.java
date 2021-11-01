@@ -1,6 +1,6 @@
 package com.tpi.teoi;
 
-public class Symbol {
+public class SymbolMe {
 
     private String order;
 
@@ -14,7 +14,7 @@ public class Symbol {
 
     private String size;
 
-    public Symbol(String order, String name, String token, String type, String value, String size) {
+    public SymbolMe(String order, String name, String token, String type, String value, String size) {
         this.order = order;
         this.name = name;
         this.token = token;
