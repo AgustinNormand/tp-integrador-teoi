@@ -1,0 +1,24 @@
+package com.tpi.teoi;
+
+import java.util.ArrayList;
+import java_cup.runtime.*; //para utilizar cup
+import java.util.*;
+import java.util.List;
+
+
+ 
+parser code
+{:
+	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
+ 	public static void main(String[] arg){ 
+  	/* Crea un objeto parser */ 
+  		parser parserObj = new parser(); 
+  	/* Asigna el Scanner */ 
+  	Scanner miAnalizadorLexico = new Yylex(new 		InputStreamReader(System.in)); 
+  	parserObj.setScanner(miAnalizadorLexico); 
+  	try{ parserObj.parse(); 
+  	}catch(Exception x){ 
+  		System.out.println("Error fatal."); 
+  } 
+ } 
+ :}; 

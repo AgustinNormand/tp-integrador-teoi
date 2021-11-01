@@ -8,6 +8,7 @@ import jflex.sym;
 %%
 
 /*%cupsym Simbolo*/
+
 %cup
 %public
 %class Lexico
@@ -248,9 +249,9 @@ OP_DECLARE         = ":="
 /*  */
 
 {ID}	            		{mp.process_match("ID", yytext());
-				return new Symbol(sym.ID,yytext();}
+				return new Symbol(sym.ID,yytext());}
 
-}
+
 
 [^]		{ mp.process_unmatch(yytext(), String.valueOf(yyline)); }
 
