@@ -17,8 +17,6 @@ public class MainConsola {
 		System.out.println("Titulo:");
 		auxLexico.next_token();
 		
-		System.out.println(sintaco.getResultGcl());
-		
 		  parser parserObj = new parser(); 
 		
 		  /* Asigna el Scanner */ 

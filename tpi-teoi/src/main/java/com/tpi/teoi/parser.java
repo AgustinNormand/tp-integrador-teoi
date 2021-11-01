@@ -255,12 +255,6 @@ public class parser extends java_cup.runtime.lr_parser {
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
  		s + "no reconocio. valor" + s.value);
  	} 
- 	MatchProcessorSintactico mps = new MatchProcessorSintactico();
-	public String getResultGcl(){
-		return mps.toString();
- 	}
-
- 	
  
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -268,7 +262,8 @@ public class parser extends java_cup.runtime.lr_parser {
 class CUP$parser$actions {
 
 
-	
+	MatchProcessorSintactico mps = new MatchProcessorSintactico();
+
   private final parser parser;
 
   /** Constructor */
