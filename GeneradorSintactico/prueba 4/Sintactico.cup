@@ -1,0 +1,111 @@
+package com.tpi.teoi;
+
+import java.util.ArrayList;
+import java_cup.runtime.*; //para utilizar cup
+import java.util.*;
+import java.util.List;
+
+
+ 
+parser code
+{:
+	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
+ 	
+ 	public void sintax(Symbol s){
+ 		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
+ 		s + "no reconocio. valor" + s.value);
+ 	} 
+ :}
+ 
+action code
+{:
+	MatchProcessorSintactico mps = new MatchProcessorSintactico();
+:}
+
+
+
+/*DECLARACION DE TERMINALES (TOKEN DEL ANALIZADOR LEXICO) */
+
+terminal 	ID, LETRA, DIGITO, PRIMER_NUMERO, CARACTERES_ESPECIALES, EspacioBlanco, COMMENT_BEG, COMMENT_END, 			COMMENT, CONST_INT, CONST_STRING, CONST_FLOAT, TYPE_INT, TYPE_STRING, TYPE_FLOAT, AND, OR, IGUAL, 			DISTINTO, MAYOR, MAYOR_I, MENOR, MENOR_I, DEC, ENDDEC, START, FINALIZE, IF, WHILE, TAKE, EXIT, 		ELSE,SIG_MENOS, SIG_MAS, SIG_DIV, SIG_MUL, COMA, PUNTO, PUNTO_Y_COMA, COM, SQR_BRACKET_OPEN, 			SQR_BRACKET_CLOSE, BRACKET_OPEN, BRACKET_CLOSE, KEY_OPEN, KEY_CLOSE, OP_ASSIGN, OP_DECLARE, WRITE;
+
+/*DECLARACIONES NO TERMINALES (LOS NUESTROS) */
+
+non terminal 	comienzo_programa, declaracion_programa, bloque_definicion, renglon_definicion, inicial, separador, 			final, programa, lista_de_sentencias, sentencia, bloque_condicion, condicion, bloque_sentencias, 		asignacion, seleccion, write, expresion, iteracion, comparacion, comparador, termino, 		factor, take, lista_constantes;
+
+/* SE DECLARA POR CUAL COMIENZA */
+
+start  with 	comienzo_programa;
+
+/*BLOQUE DE GLC*/
+
+comienzo_programa ::= declaracion_programa programa {:System.out.println(" comienzo_programa Regla [0] compila, llega a start"):};
+
+declaracion_programa ::= DEC bloque_definicion ENDDEC {:System.out.println(" Declaracion_programa regla[1]");:};
+
+bloque_definicion ::= renglon_definicion {:System.out.println(" bloque_definicion regla[2]");:};	
+
+bloque_definicion ::= bloque_definicion renglon_definicion {:System.out.println(" bloque_definicion regla[3]");:};	
+
+renglon_definicion	::= inicial separador final {:System.out.println(" renglon_definicion regla[4]");:};	
+
+inicial ::= SQR_BRACKET_OPEN ID {:System.out.println(" inicial regla[5]");:};	
+
+final ::= TYPE_INT SQR_BRACKET_CLOSE {:System.out.println(" final regla[6]");:};	
+
+final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:System.out.println(" final regla[7]");:};	
+
+final ::= TYPE_STRING SQR_BRACKET_CLOSE {:System.out.println(" final regla[8]");:};	
+
+separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN {:System.out.println(" bloque_definicion regla[9]");:};
+
+separador::= COMA ID separador TYPE_INT COMA | COMA ID separador TYPE_FLOAT COMA | COMA ID separador TYPE_STRING COMA 														{:System.out.println(" separador regla[10]");:};
+
+programa ::= START lista_de_sentencias FINALIZE {:System.out.println(" programa regla[11]");:};
+
+lista_de_sentencias ::=  sentencia {:System.out.println(" lista de sentencias sentencia regla[12]");:};
+
+lista_de_sentencias ::= lista_de_sentencias sentencia {:System.out.println(" lista de sentencias regla[13]");:};
+
+bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:System.out.println(" bloque_condicion regla[14]");:};
+
+bloque_sentencias ::= SQR_BRACKET_OPEN lista_de_sentencias SQR_BRACKET_CLOSE	{:System.out.println(" bloque_sentencias regla[16]");:};
+
+sentencia ::= asignacion {:System.out.println(" sentencia regla[17]");:};
+
+sentencia ::= iteracion {:System.out.println(" senetencia regla[18]");:};
+
+sentencia ::= seleccion{:System.out.println(" sentencia regla[19]");:};
+
+asignacion ::= ID OP_ASSIGN expresion{:System.out.println(" asignacion regla[20]");:};
+
+seleccion ::= IF bloque_condicion bloque_sentencias{:System.out.println(" seleccion regla[21]");:};
+
+seleccion  ::= IF bloque_condicion bloque_sentencias ELSE bloque_sentencias{:System.out.println("seleccion regla[22]");:};
+
+iteracion ::= WHILE bloque_condicion  bloque_sentencias{:System.out.println(" iteracionregla[23]");:};
+
+condicion ::= comparacion{:System.out.println(" condicion regla[24]");:};
+
+condicion ::= comparacion AND comparacion{:System.out.println(" condicionregla[25]");:};
+
+condicion ::= comparacion OR comparacion{:System.out.println(" condicion regla[26]");:};
+
+comparacion ::= expresion comparador expresion{:System.out.println(" comparacion regla[27]");:};
+
+comparador ::= MAYOR | MAYOR_I | MENOR | MENOR_I | IGUAL | DISTINTO{:System.out.println(" comparador regla[28]");:};
+
+expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | termino{:System.out.println("expresion regla[29]");:};
+
+termino ::= termino SIG_MUL factor | termino SIG_DIV factor |  factor{:System.out.println(" termino regla[30]");:};
+
+factor ::= BRACKET_OPEN expresion BRACKET_CLOSE | ID | CONST_FLOAT | CONST_INT |take{:System.out.println(" factor  regla[31]");:};
+
+write ::= WRITE CONST_FLOAT | WRITE CONST_INT | WRITE CONST_STRING | WRITE ID	{:System.out.println("write regla[32]");:};
+
+lista_constantes::= lista_constantes COMA CONST_INT | CONST_INT {:System.out.println("lista_constantes regla[33]");:};
+
+take::= TAKE BRACKET_OPEN SIG_MAS PUNTO_Y_COMA ID PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes  SQR_BRACKET_CLOSE BRACKET_CLOSE 
+																{:System.out.println("lista_constantes regla[35]");:};
+
+
+

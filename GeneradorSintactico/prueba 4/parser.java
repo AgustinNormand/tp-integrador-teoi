@@ -303,7 +303,7 @@ class CUP$parser$actions {
           case 1: // comienzo_programa ::= declaracion_programa programa 
             {
               Object RESULT =null;
-		System.out.println(" comienzo_programa Regla [0] compila, llega a start");
+		System.out.println(" comienzo_programa Regla [0] compila, llega a start")
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comienzo_programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

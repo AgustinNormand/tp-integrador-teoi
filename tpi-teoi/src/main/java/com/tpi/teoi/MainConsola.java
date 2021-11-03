@@ -7,25 +7,11 @@ import java.util.Scanner;
 
 public class MainConsola {
 
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		String pad = "/home/lucasldc/Documentos/git Proyecto TEOI/tp-integrador-teoi/prueba.txt";
-		FileReader file = new FileReader(pad);
-		Lexico auxLexico = new Lexico(file);
+	public static void main(String[] args) throws FileNotFoundException, Exception{
+		FileReader f = new FileReader("/home/lucasldc/Documentos/git Proyecto TEOI/tp-integrador-teoi/prueba.txt");
+		Lexico Lexer = new Lexico(f);
+		parser sintactico = new parser(Lexer);
+		sintactico.parse();
 		
-		parser sintaco = new parser(auxLexico);
-		System.out.println("Titulo:");
-		auxLexico.next_token();
-		
-		  parser parserObj = new parser(); 
-		
-		  /* Asigna el Scanner */ 
-		  java_cup.runtime.Scanner miAnalizadorLexico = new Lexico(file); 
-		  parserObj.setScanner(miAnalizadorLexico); 
-		  try{ parserObj.parse(); 
-		  }catch(Exception x){ 
-		  System.out.println("Error fatal."); 
-		  } 
-
-}
+	}
 }
