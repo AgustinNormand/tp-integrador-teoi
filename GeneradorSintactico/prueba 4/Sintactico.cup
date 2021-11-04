@@ -12,6 +12,7 @@ parser code
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	
  	public void sintax(Symbol s){
+		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
  		s + "no reconocio. valor" + s.value);
  	} 
@@ -38,7 +39,7 @@ start  with 	comienzo_programa;
 
 /*BLOQUE DE GLC*/
 
-comienzo_programa ::= declaracion_programa programa {:System.out.println(" comienzo_programa Regla [0] compila, llega a start"):};
+comienzo_programa ::= declaracion_programa programa {:System.out.println(" comienzo_programa Regla [0] compila, llega a start");:};
 
 declaracion_programa ::= DEC bloque_definicion ENDDEC {:System.out.println(" Declaracion_programa regla[1]");:};
 
@@ -50,7 +51,7 @@ renglon_definicion	::= inicial separador final {:System.out.println(" renglon_de
 
 inicial ::= SQR_BRACKET_OPEN ID {:System.out.println(" inicial regla[5]");:};	
 
-final ::= TYPE_INT SQR_BRACKET_CLOSE {:System.out.println(" final regla[6]");:};	
+final ::= TYPE_INT SQR_BRACKET_CLOSE  {:System.out.println(" final regla[6]");:};	
 
 final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:System.out.println(" final regla[7]");:};	
 
@@ -68,9 +69,11 @@ lista_de_sentencias ::= lista_de_sentencias sentencia {:System.out.println(" lis
 
 bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:System.out.println(" bloque_condicion regla[14]");:};
 
-bloque_sentencias ::= SQR_BRACKET_OPEN lista_de_sentencias SQR_BRACKET_CLOSE	{:System.out.println(" bloque_sentencias regla[16]");:};
+bloque_sentencias ::= KEY_OPEN lista_de_sentencias KEY_CLOSE	{:System.out.println(" bloque_sentencias regla[16]");:};
 
 sentencia ::= asignacion {:System.out.println(" sentencia regla[17]");:};
+
+sentencia ::= write {:System.out.println(" write regla[17BIS]");:};
 
 sentencia ::= iteracion {:System.out.println(" senetencia regla[18]");:};
 
@@ -94,13 +97,13 @@ comparacion ::= expresion comparador expresion{:System.out.println(" comparacion
 
 comparador ::= MAYOR | MAYOR_I | MENOR | MENOR_I | IGUAL | DISTINTO{:System.out.println(" comparador regla[28]");:};
 
-expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | termino{:System.out.println("expresion regla[29]");:};
+expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | CONST_STRING |termino{:System.out.println("expresion regla[29]");:};
 
 termino ::= termino SIG_MUL factor | termino SIG_DIV factor |  factor{:System.out.println(" termino regla[30]");:};
 
 factor ::= BRACKET_OPEN expresion BRACKET_CLOSE | ID | CONST_FLOAT | CONST_INT |take{:System.out.println(" factor  regla[31]");:};
 
-write ::= WRITE CONST_FLOAT | WRITE CONST_INT | WRITE CONST_STRING | WRITE ID	{:System.out.println("write regla[32]");:};
+write ::= EXIT CONST_FLOAT | EXIT CONST_INT | EXIT CONST_STRING | EXIT ID	{:System.out.println("write regla[32]");:};
 
 lista_constantes::= lista_constantes COMA CONST_INT | CONST_INT {:System.out.println("lista_constantes regla[33]");:};
 

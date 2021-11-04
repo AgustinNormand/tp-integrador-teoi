@@ -1122,7 +1122,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 73: break;
           case 33: 
             { mp.process_match("TYPE_FLOAT", yytext());
-				return new Symbol(sym.CONST_FLOAT,yytext());
+				return new Symbol(sym.TYPE_FLOAT,yytext());
             } 
             // fall through
           case 74: break;
@@ -1145,7 +1145,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 77: break;
           case 37: 
             { mp.process_match("TYPE_STRING", yytext());
-				return new Symbol(sym.CONST_STRING,yytext());
+				return new Symbol(sym.TYPE_STRING,yytext());
             } 
             // fall through
           case 78: break;

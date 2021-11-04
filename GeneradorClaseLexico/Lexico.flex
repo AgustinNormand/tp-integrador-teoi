@@ -66,6 +66,7 @@ WHILE    = (W|w)(H|h)(i|i)(L|l)(e|e)
 TAKE     = (T|t)(A|a)(K|k)(E|e)
 EXIT     = (W|w)(R|r)(I|i)(T|t)(E|e)
 ELSE     = (E|e)(L|l)(S|s)(E|e)
+
 /* */
 
 
@@ -133,10 +134,10 @@ OP_DECLARE         = ":="
 				return new Symbol(sym.TYPE_INT,yytext());}
 
 {TYPE_STRING}           	{mp.process_match("TYPE_STRING", yytext());
-				return new Symbol(sym.CONST_STRING,yytext());}
+				return new Symbol(sym.TYPE_STRING,yytext());}
 
 {TYPE_FLOAT}            	{mp.process_match("TYPE_FLOAT", yytext());
-				return new Symbol(sym.CONST_FLOAT,yytext());}
+				return new Symbol(sym.TYPE_FLOAT,yytext());}
 
 /*  */
 
