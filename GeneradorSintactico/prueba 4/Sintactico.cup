@@ -9,10 +9,9 @@ import java.util.List;
  
 parser code
 {:
-	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
- 	
-	ArrayList<String> listaReglas = new ArrayList<String>();
+	ArrayList<String> listaPruebaID = new ArrayList<String>();
 
+	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	public void sintax(Symbol s){
 		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
