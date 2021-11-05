@@ -46,16 +46,16 @@ public class InterfazCompilador extends JFrame {
         setTitle("Interfaz Gráfica Compilador - Grupo 1");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 544, 642);
-        setSize(1000,1348);
+        setSize(1221,1348);
         setLocationRelativeTo(null); //centrado.
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         GridBagLayout gbl_contentPane = new GridBagLayout();
-        gbl_contentPane.columnWidths = new int[]{245, 0};
+        gbl_contentPane.columnWidths = new int[]{245, 419, 0, 0, 0};
         gbl_contentPane.rowHeights = new int[]{40, 26, 0, 0, 23, 23, 0, 0, 0, 16, 89, 26, 0, 0, 159, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-        gbl_contentPane.columnWeights = new double[]{1.0, 0.0};
-        gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+        gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0};
+        gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
         contentPane.setLayout(gbl_contentPane);
                 
         JLabel lblNombreDelArchivo = new JLabel("Archivo de entrada");
@@ -68,22 +68,39 @@ public class InterfazCompilador extends JFrame {
                
         txtNombre = new JTextField();
         GridBagConstraints gbc_txtNombre = new GridBagConstraints();
-        gbc_txtNombre.gridwidth = 2;
+        gbc_txtNombre.gridwidth = 5;
         gbc_txtNombre.fill = GridBagConstraints.HORIZONTAL;
         gbc_txtNombre.insets = new Insets(0, 0, 5, 5);
         gbc_txtNombre.gridx = 0;
         gbc_txtNombre.gridy = 1;
         contentPane.add(txtNombre, gbc_txtNombre);
         txtNombre.setColumns(10);
+        
+        JLabel lblNewLabel = new JLabel("Salida Sintactica");
+        GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+        gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
+        gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+        gbc_lblNewLabel.gridx = 2;
+        gbc_lblNewLabel.gridy = 2;
+        contentPane.add(lblNewLabel, gbc_lblNewLabel);
                         
         final TextArea txaArchivo = new TextArea();
         GridBagConstraints gbc_txaArchivo = new GridBagConstraints();
-        gbc_txaArchivo.gridwidth = 4;
+        gbc_txaArchivo.gridwidth = 2;
         gbc_txaArchivo.fill = GridBagConstraints.BOTH;
-        gbc_txaArchivo.insets = new Insets(0, 0, 5, 0);
+        gbc_txaArchivo.insets = new Insets(0, 0, 5, 5);
         gbc_txaArchivo.gridx = 0;
         gbc_txaArchivo.gridy = 3;
         contentPane.add(txaArchivo, gbc_txaArchivo);
+        
+        final TextArea textArea = new TextArea();
+        GridBagConstraints gbc_textArea = new GridBagConstraints();
+        gbc_textArea.gridwidth = 5;
+        gbc_textArea.fill = GridBagConstraints.BOTH;
+        gbc_textArea.insets = new Insets(0, 0, 5, 0);
+        gbc_textArea.gridx = 2;
+        gbc_textArea.gridy = 3;
+        contentPane.add(textArea, gbc_textArea);
         
         JButton btnAbrirArchivo = new JButton("Abrir archivo");
         btnAbrirArchivo.addActionListener(new ActionListener() {
@@ -116,7 +133,7 @@ public class InterfazCompilador extends JFrame {
         GridBagConstraints gbc_btnAbrirArchivo = new GridBagConstraints();
         gbc_btnAbrirArchivo.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnAbrirArchivo.insets = new Insets(0, 0, 5, 5);
-        gbc_btnAbrirArchivo.gridx = 2;
+        gbc_btnAbrirArchivo.gridx = 5;
         gbc_btnAbrirArchivo.gridy = 1;
         contentPane.add(btnAbrirArchivo, gbc_btnAbrirArchivo);
                 
@@ -144,7 +161,7 @@ public class InterfazCompilador extends JFrame {
         gbc_btnGuardarArchivo.gridwidth = 1;
         gbc_btnGuardarArchivo.fill = GridBagConstraints.HORIZONTAL;
         gbc_btnGuardarArchivo.insets = new Insets(0, 0, 5, 0);
-        gbc_btnGuardarArchivo.gridx = 3;
+        gbc_btnGuardarArchivo.gridx = 6;
         gbc_btnGuardarArchivo.gridy = 1;
         contentPane.add(btnGuardarArchivo, gbc_btnGuardarArchivo);
         
@@ -162,7 +179,7 @@ public class InterfazCompilador extends JFrame {
         gbc_resultadoAnalisis.gridheight = 7;
         gbc_resultadoAnalisis.insets = new Insets(0, 0, 5, 0);
         gbc_resultadoAnalisis.fill = GridBagConstraints.BOTH;
-        gbc_resultadoAnalisis.gridwidth = 4;
+        gbc_resultadoAnalisis.gridwidth = 7;
         gbc_resultadoAnalisis.gridx = 0;
         gbc_resultadoAnalisis.gridy = 5;
         
@@ -215,7 +232,7 @@ public class InterfazCompilador extends JFrame {
 
         rowSorter.setComparator(0, new IntComparator());
         rowSorterLex.setComparator (0, new IntComparator());
-                                          
+                                                         
         JLabel lblResutadosDelAnlisis = new JLabel("Tabla de símbolos - Constantes y Variables");
         lblResutadosDelAnlisis.setFont(new Font("Tahoma", Font.PLAIN, 13));
         GridBagConstraints gbc_lblResutadosDelAnlisis = new GridBagConstraints();
@@ -234,7 +251,7 @@ public class InterfazCompilador extends JFrame {
        
         GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
         gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-        gbc_btnNewButton.gridx = 1;
+        gbc_btnNewButton.gridx = 4;
         gbc_btnNewButton.gridy = 4;
         contentPane.add(btnNewButton, gbc_btnNewButton);
         btnNewButton.setVisible(false);
@@ -247,8 +264,17 @@ public class InterfazCompilador extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		try {
                    Lexico Lexer = new Lexico(new StringReader(txaArchivo.getText()));
+                   parser sintactico = new parser(Lexer); /*probando */
+                   sintactico.parse(); /*- si este parse se hace despues del next_token, no compila los resultados de las tablas*/
+                   textArea.setText(""); 
+                   for (int i = 0; i < sintactico.listaReglas.size(); i++) { /*recorre la lista de reglas en el Parser y muestra en textArea*/
+                	  // textArea.setText(par.listaReglas.get(i) + "\n");
+               			textArea.appendText(sintactico.listaReglas.get(i) + "\n");
+               		}
+                       
+                                   
                    Lexer.next_token();
-
+                   
                    /* Code to update table */
                    DefaultTableModel model = (DefaultTableModel) tabla_simbolos.getModel();
                    DefaultTableModel modelex = (DefaultTableModel) tabla_lexemas.getModel();
@@ -296,7 +322,11 @@ public class InterfazCompilador extends JFrame {
                    		
                    		//JOptionPane.showMessageDialog(null, "Se generó un archivo ts.txt");
                    		bw.close();
-                   }
+                   	}
+                   
+                 
+                   
+                   
         		} catch (Exception ex) {
         			JOptionPane.showMessageDialog(null, ex.toString());
         		}      		
@@ -310,7 +340,7 @@ public class InterfazCompilador extends JFrame {
         GridBagConstraints gbc_btnRealizarAnalisis = new GridBagConstraints();
         gbc_btnRealizarAnalisis.gridwidth = 2;
         gbc_btnRealizarAnalisis.insets = new Insets(0, 0, 5, 0);
-        gbc_btnRealizarAnalisis.gridx = 2;
+        gbc_btnRealizarAnalisis.gridx = 5;
         gbc_btnRealizarAnalisis.gridy = 4;
         contentPane.add(btnRealizarAnalisis, gbc_btnRealizarAnalisis);
         
@@ -330,7 +360,7 @@ public class InterfazCompilador extends JFrame {
         JScrollPane panel2 = new JScrollPane(tabla_lexemas);
         
         GridBagConstraints gbc_resultadoAnalisisTotal = new GridBagConstraints();
-        gbc_resultadoAnalisisTotal.gridwidth = 4;
+        gbc_resultadoAnalisisTotal.gridwidth = 7;
         gbc_resultadoAnalisisTotal.insets = new Insets(0, 0, 5, 0);
         gbc_resultadoAnalisisTotal.fill = GridBagConstraints.BOTH;
         gbc_resultadoAnalisisTotal.gridx = 0;

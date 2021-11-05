@@ -11,6 +11,8 @@ parser code
 {:
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	
+	ArrayList<String> listaReglas = new ArrayList<String>();
+
  	public void sintax(Symbol s){
 		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
@@ -20,7 +22,6 @@ parser code
  
 action code
 {:
-	MatchProcessorSintactico mps = new MatchProcessorSintactico();
 :}
 
 
@@ -39,76 +40,110 @@ start  with 	comienzo_programa;
 
 /*BLOQUE DE GLC*/
 
-comienzo_programa ::= declaracion_programa programa {:System.out.println(" comienzo_programa Regla [0] compila, llega a start");:};
+comienzo_programa ::= declaracion_programa programa {:System.out.println(" Comienzo_programa Regla [0] compila, llega a start"); 
+													listaReglas.add("Comienzo_programa Regla [0] compila, START");:};
 
-declaracion_programa ::= DEC bloque_definicion ENDDEC {:System.out.println(" Declaracion_programa regla[1]");:};
+declaracion_programa ::= DEC bloque_definicion ENDDEC {:System.out.println(" Declaracion_programa regla[1]"); 
+													listaReglas.add("Declaracion_programa regla[1]");:};
 
-bloque_definicion ::= renglon_definicion {:System.out.println(" bloque_definicion regla[2]");:};	
+bloque_definicion ::= renglon_definicion {:System.out.println(" bloque_definicion regla[2]");
+													listaReglas.add("bloque_definicion regla[2]");:};	
 
-bloque_definicion ::= bloque_definicion renglon_definicion {:System.out.println(" bloque_definicion regla[3]");:};	
+bloque_definicion ::= bloque_definicion renglon_definicion {:System.out.println(" bloque_definicion regla[3]");
+													listaReglas.add("bloque_definicion regla[3]");:};	
 
-renglon_definicion	::= inicial separador final {:System.out.println(" renglon_definicion regla[4]");:};	
+renglon_definicion	::= inicial separador final {:System.out.println(" renglon_definicion regla[4]");
+													listaReglas.add("renglon_definicion regla[4]");:};	
 
-inicial ::= SQR_BRACKET_OPEN ID {:System.out.println(" inicial regla[5]");:};	
+inicial ::= SQR_BRACKET_OPEN ID {:System.out.println(" inicial regla[5]");
+								listaReglas.add("inicial regla[5]");:};	
 
-final ::= TYPE_INT SQR_BRACKET_CLOSE  {:System.out.println(" final regla[6]");:};	
+final ::= TYPE_INT SQR_BRACKET_CLOSE  {:System.out.println(" final regla[6]");
+										listaReglas.add(" final regla[6]");:};	
 
-final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:System.out.println(" final regla[7]");:};	
+final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:System.out.println(" final regla[7]");
+										listaReglas.add("final regla[7]");:};	
 
-final ::= TYPE_STRING SQR_BRACKET_CLOSE {:System.out.println(" final regla[8]");:};	
+final ::= TYPE_STRING SQR_BRACKET_CLOSE {:System.out.println(" final regla[8]");
+										listaReglas.add("final regla[8]");:};	
 
-separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN {:System.out.println(" bloque_definicion regla[9]");:};
+separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN {:System.out.println(" separador regla[9]");
+															listaReglas.add("separador regla[9]");:};
 
-separador::= COMA ID separador TYPE_INT COMA | COMA ID separador TYPE_FLOAT COMA | COMA ID separador TYPE_STRING COMA 														{:System.out.println(" separador regla[10]");:};
+separador::= COMA ID separador TYPE_INT COMA | COMA ID separador TYPE_FLOAT COMA | COMA ID separador TYPE_STRING COMA {:System.out.println(" separador regla[10]");
+																													listaReglas.add(" separador regla[10]");:};
 
-programa ::= START lista_de_sentencias FINALIZE {:System.out.println(" programa regla[11]");:};
+programa ::= START lista_de_sentencias FINALIZE {:System.out.println(" programa regla[11]");
+												listaReglas.add("programa regla[11]");:};
 
-lista_de_sentencias ::=  sentencia {:System.out.println(" lista de sentencias sentencia regla[12]");:};
+lista_de_sentencias ::=  sentencia {:System.out.println(" lista de sentencias-sentencia regla[12]");
+									listaReglas.add(" lista de sentencias-sentencia regla[12]");:};
 
-lista_de_sentencias ::= lista_de_sentencias sentencia {:System.out.println(" lista de sentencias regla[13]");:};
+lista_de_sentencias ::= lista_de_sentencias sentencia {:System.out.println(" lista de sentencias regla[13]");
+														listaReglas.add("lista de sentencias regla[13]");:};
 
 bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:System.out.println(" bloque_condicion regla[14]");:};
 
-bloque_sentencias ::= KEY_OPEN lista_de_sentencias KEY_CLOSE	{:System.out.println(" bloque_sentencias regla[16]");:};
+bloque_sentencias ::= KEY_OPEN lista_de_sentencias KEY_CLOSE {:System.out.println(" bloque_sentencias regla[15]");
+															  listaReglas.add("bloque_Sentencias regla [15]");:};
 
-sentencia ::= asignacion {:System.out.println(" sentencia regla[17]");:};
+sentencia ::= asignacion {:System.out.println(" sentencia-asignacion regla[16]");
+							listaReglas.add("sentencia-asignacion regla[16]");:};
 
-sentencia ::= write {:System.out.println(" write regla[17BIS]");:};
+sentencia ::= write {:System.out.println(" sentencia-write regla[17]");
+					listaReglas.add("sentencia-write regla[17]");:};
 
-sentencia ::= iteracion {:System.out.println(" senetencia regla[18]");:};
+sentencia ::= iteracion {:System.out.println(" sentencia-iteracion regla[18]");
+						listaReglas.add("sentencia-iteracion regla[18]");:};
 
-sentencia ::= seleccion{:System.out.println(" sentencia regla[19]");:};
+sentencia ::= seleccion {:System.out.println(" sentencia-seleccion regla[19]");
+						listaReglas.add("sentencia-seleccion regla[19]");:};
 
-asignacion ::= ID OP_ASSIGN expresion{:System.out.println(" asignacion regla[20]");:};
+asignacion ::= ID OP_ASSIGN expresion {:System.out.println(" asignacion regla[20]");
+									  listaReglas.add("asignacion regla[20]");:};
 
-seleccion ::= IF bloque_condicion bloque_sentencias{:System.out.println(" seleccion regla[21]");:};
+seleccion ::= IF bloque_condicion bloque_sentencias {:System.out.println(" seleccion regla[21]");
+													listaReglas.add("seleccion regla[21]");:};
 
-seleccion  ::= IF bloque_condicion bloque_sentencias ELSE bloque_sentencias{:System.out.println("seleccion regla[22]");:};
+seleccion  ::= IF bloque_condicion bloque_sentencias ELSE bloque_sentencias {:System.out.println("seleccion regla[22]");
+																			listaReglas.add("seleccion regla[22]");:};
 
-iteracion ::= WHILE bloque_condicion  bloque_sentencias{:System.out.println(" iteracionregla[23]");:};
+iteracion ::= WHILE bloque_condicion  bloque_sentencias {:System.out.println(" iteracion regla[23]");
+														listaReglas.add("iteracion regla[23]");:};
 
-condicion ::= comparacion{:System.out.println(" condicion regla[24]");:};
+condicion ::= comparacion {:System.out.println(" condicion regla[24]");
+						  listaReglas.add("condicion regla[24]");:};
 
-condicion ::= comparacion AND comparacion{:System.out.println(" condicionregla[25]");:};
+condicion ::= comparacion AND comparacion {:System.out.println(" condicion regla[25]");
+										listaReglas.add("condicion regla[25]");:};
 
-condicion ::= comparacion OR comparacion{:System.out.println(" condicion regla[26]");:};
+condicion ::= comparacion OR comparacion {:System.out.println(" condicion regla[26]");
+										listaReglas.add("condicion regla[26]");:};
 
-comparacion ::= expresion comparador expresion{:System.out.println(" comparacion regla[27]");:};
+comparacion ::= expresion comparador expresion {:System.out.println(" comparacion regla[27]");
+												listaReglas.add("comparacion regla[27]");:};
 
-comparador ::= MAYOR | MAYOR_I | MENOR | MENOR_I | IGUAL | DISTINTO{:System.out.println(" comparador regla[28]");:};
+comparador ::= MAYOR | MAYOR_I | MENOR | MENOR_I | IGUAL | DISTINTO {:System.out.println(" comparador regla[28]");
+																	listaReglas.add("comparador regla[28");:};
 
-expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | CONST_STRING |termino{:System.out.println("expresion regla[29]");:};
+expresion ::=  expresion SIG_MAS termino | expresion SIG_MENOS termino | CONST_STRING |termino {:System.out.println("expresion regla[29]");
+																								listaReglas.add("expresion regla[29]");:};
 
-termino ::= termino SIG_MUL factor | termino SIG_DIV factor |  factor{:System.out.println(" termino regla[30]");:};
+termino ::= termino SIG_MUL factor | termino SIG_DIV factor | factor {:System.out.println(" termino regla[30]");
+																		listaReglas.add("termino regla[30]");:};
 
-factor ::= BRACKET_OPEN expresion BRACKET_CLOSE | ID | CONST_FLOAT | CONST_INT |take{:System.out.println(" factor  regla[31]");:};
+factor ::= BRACKET_OPEN expresion BRACKET_CLOSE | ID | CONST_FLOAT | CONST_INT | take {:System.out.println(" factor regla[31]");
+																					 listaReglas.add(" factor regla[31]");:};
 
-write ::= EXIT CONST_FLOAT | EXIT CONST_INT | EXIT CONST_STRING | EXIT ID	{:System.out.println("write regla[32]");:};
+write ::= EXIT CONST_FLOAT | EXIT CONST_INT | EXIT CONST_STRING | EXIT ID {:System.out.println("write regla[32]");
+																			listaReglas.add("write regla[32]");:};
 
-lista_constantes::= lista_constantes COMA CONST_INT | CONST_INT {:System.out.println("lista_constantes regla[33]");:};
+lista_constantes::= lista_constantes COMA CONST_INT | CONST_INT {:System.out.println("lista_constantes regla[33]");
+																listaReglas.add("lista_constantes regla[33]");:};
 
-take::= TAKE BRACKET_OPEN SIG_MAS PUNTO_Y_COMA ID PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes  SQR_BRACKET_CLOSE BRACKET_CLOSE 
-																{:System.out.println("lista_constantes regla[35]");:};
+take::= TAKE BRACKET_OPEN SIG_MAS PUNTO_Y_COMA ID PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes SQR_BRACKET_CLOSE BRACKET_CLOSE 
+																{:System.out.println("take regla[35]");
+																listaReglas.add("take regla[35]");:};
 
 
 

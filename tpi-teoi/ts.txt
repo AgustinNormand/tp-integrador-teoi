@@ -1,1 +1,4 @@
-Symbol{order='1', name='sdasd', token='ID', type='', value='---', size='---'}
+Symbol{order='3', name='a1', token='ID', type='', value='---', size='---'}
+Symbol{order='5', name='b1', token='ID', type='', value='---', size='---'}
+Symbol{order='15', name='a1', token='ID', type='', value='---', size='---'}
+Symbol{order='17', name='_30.5', token='CONST_FLOAT', type='---', value='30.5', size='---'}

@@ -8,7 +8,7 @@ PROGRAM.SECTION	//* Apertura del programa *//
 
 WRITE "testeo del analisis lexico"
 
-a1 ::= 30.5
+a1 ::= 30.5 
 b1 ::= 55
 i ::= 1
 
@@ -21,9 +21,7 @@ if (resul = 59) {
     p1 ::= a1
     p2 ::= b1
     p3 ::= resul
-    p4 ::= -205
-    p5 ::= 452000525587.985
-    
+        
 }else{
     if (resul > 59){
 	p3::= 999

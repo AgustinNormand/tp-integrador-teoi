@@ -271,6 +271,8 @@ public class parser extends java_cup.runtime.lr_parser {
 
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	
+	ArrayList<String> listaReglas = new ArrayList<String>();
+
  	public void sintax(Symbol s){
 		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
@@ -283,7 +285,6 @@ public class parser extends java_cup.runtime.lr_parser {
 class CUP$parser$actions {
 
 
-	MatchProcessorSintactico mps = new MatchProcessorSintactico();
 
   private final parser parser;
 
@@ -324,7 +325,8 @@ class CUP$parser$actions {
           case 1: // comienzo_programa ::= declaracion_programa programa 
             {
               Object RESULT =null;
-		System.out.println(" comienzo_programa Regla [0] compila, llega a start");
+		System.out.println(" Comienzo_programa Regla [0] compila, llega a start"); 
+													listaReglas.add("Comienzo_programa Regla [0] compila, START");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comienzo_programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -333,7 +335,8 @@ class CUP$parser$actions {
           case 2: // declaracion_programa ::= DEC bloque_definicion ENDDEC 
             {
               Object RESULT =null;
-		System.out.println(" Declaracion_programa regla[1]");
+		System.out.println(" Declaracion_programa regla[1]"); 
+													listaReglas.add("Declaracion_programa regla[1]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("declaracion_programa",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -343,6 +346,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" bloque_definicion regla[2]");
+													listaReglas.add("bloque_definicion regla[2]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("bloque_definicion",2, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -352,6 +356,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" bloque_definicion regla[3]");
+													listaReglas.add("bloque_definicion regla[3]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("bloque_definicion",2, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -361,6 +366,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" renglon_definicion regla[4]");
+													listaReglas.add("renglon_definicion regla[4]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("renglon_definicion",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -370,6 +376,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" inicial regla[5]");
+								listaReglas.add("inicial regla[5]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("inicial",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -379,6 +386,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" final regla[6]");
+										listaReglas.add(" final regla[6]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("final",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -388,6 +396,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" final regla[7]");
+										listaReglas.add("final regla[7]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("final",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -397,6 +406,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" final regla[8]");
+										listaReglas.add("final regla[8]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("final",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -405,7 +415,8 @@ class CUP$parser$actions {
           case 10: // separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN 
             {
               Object RESULT =null;
-		System.out.println(" bloque_definicion regla[9]");
+		System.out.println(" separador regla[9]");
+															listaReglas.add("separador regla[9]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("separador",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -433,6 +444,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" separador regla[10]");
+																													listaReglas.add(" separador regla[10]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("separador",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -442,6 +454,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" programa regla[11]");
+												listaReglas.add("programa regla[11]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("programa",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -450,7 +463,8 @@ class CUP$parser$actions {
           case 15: // lista_de_sentencias ::= sentencia 
             {
               Object RESULT =null;
-		System.out.println(" lista de sentencias sentencia regla[12]");
+		System.out.println(" lista de sentencias-sentencia regla[12]");
+									listaReglas.add(" lista de sentencias-sentencia regla[12]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lista_de_sentencias",8, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -460,6 +474,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" lista de sentencias regla[13]");
+														listaReglas.add("lista de sentencias regla[13]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lista_de_sentencias",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -477,7 +492,8 @@ class CUP$parser$actions {
           case 18: // bloque_sentencias ::= KEY_OPEN lista_de_sentencias KEY_CLOSE 
             {
               Object RESULT =null;
-		System.out.println(" bloque_sentencias regla[16]");
+		System.out.println(" bloque_sentencias regla[15]");
+															  listaReglas.add("bloque_Sentencias regla [15]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("bloque_sentencias",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -486,7 +502,8 @@ class CUP$parser$actions {
           case 19: // sentencia ::= asignacion 
             {
               Object RESULT =null;
-		System.out.println(" sentencia regla[17]");
+		System.out.println(" sentencia-asignacion regla[16]");
+							listaReglas.add("sentencia-asignacion regla[16]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("sentencia",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -495,7 +512,8 @@ class CUP$parser$actions {
           case 20: // sentencia ::= write 
             {
               Object RESULT =null;
-		System.out.println(" write regla[17BIS]");
+		System.out.println(" sentencia-write regla[17]");
+					listaReglas.add("sentencia-write regla[17]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("sentencia",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -504,7 +522,8 @@ class CUP$parser$actions {
           case 21: // sentencia ::= iteracion 
             {
               Object RESULT =null;
-		System.out.println(" senetencia regla[18]");
+		System.out.println(" sentencia-iteracion regla[18]");
+						listaReglas.add("sentencia-iteracion regla[18]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("sentencia",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -513,7 +532,8 @@ class CUP$parser$actions {
           case 22: // sentencia ::= seleccion 
             {
               Object RESULT =null;
-		System.out.println(" sentencia regla[19]");
+		System.out.println(" sentencia-seleccion regla[19]");
+						listaReglas.add("sentencia-seleccion regla[19]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("sentencia",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -523,6 +543,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" asignacion regla[20]");
+									  listaReglas.add("asignacion regla[20]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -532,6 +553,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" seleccion regla[21]");
+													listaReglas.add("seleccion regla[21]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("seleccion",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -541,6 +563,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("seleccion regla[22]");
+																			listaReglas.add("seleccion regla[22]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("seleccion",14, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -549,7 +572,8 @@ class CUP$parser$actions {
           case 26: // iteracion ::= WHILE bloque_condicion bloque_sentencias 
             {
               Object RESULT =null;
-		System.out.println(" iteracionregla[23]");
+		System.out.println(" iteracion regla[23]");
+														listaReglas.add("iteracion regla[23]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("iteracion",17, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -559,6 +583,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" condicion regla[24]");
+						  listaReglas.add("condicion regla[24]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",11, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -567,7 +592,8 @@ class CUP$parser$actions {
           case 28: // condicion ::= comparacion AND comparacion 
             {
               Object RESULT =null;
-		System.out.println(" condicionregla[25]");
+		System.out.println(" condicion regla[25]");
+										listaReglas.add("condicion regla[25]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -577,6 +603,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" condicion regla[26]");
+										listaReglas.add("condicion regla[26]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -586,6 +613,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" comparacion regla[27]");
+												listaReglas.add("comparacion regla[27]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comparacion",18, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -640,6 +668,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" comparador regla[28]");
+																	listaReglas.add("comparador regla[28");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comparador",19, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -676,6 +705,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("expresion regla[29]");
+																								listaReglas.add("expresion regla[29]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",16, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -703,6 +733,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" termino regla[30]");
+																		listaReglas.add("termino regla[30]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",20, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -747,7 +778,8 @@ class CUP$parser$actions {
           case 48: // factor ::= take 
             {
               Object RESULT =null;
-		System.out.println(" factor  regla[31]");
+		System.out.println(" factor regla[31]");
+																					 listaReglas.add(" factor regla[31]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",21, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -784,6 +816,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("write regla[32]");
+																			listaReglas.add("write regla[32]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("write",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -802,6 +835,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("lista_constantes regla[33]");
+																listaReglas.add("lista_constantes regla[33]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lista_constantes",23, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -810,7 +844,8 @@ class CUP$parser$actions {
           case 55: // take ::= TAKE BRACKET_OPEN SIG_MAS PUNTO_Y_COMA ID PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes SQR_BRACKET_CLOSE BRACKET_CLOSE 
             {
               Object RESULT =null;
-		System.out.println("lista_constantes regla[35]");
+		System.out.println("take regla[35]");
+																listaReglas.add("take regla[35]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("take",22, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-9)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
