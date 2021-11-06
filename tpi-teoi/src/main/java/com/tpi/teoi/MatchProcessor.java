@@ -21,6 +21,8 @@ public class MatchProcessor {
     final float MAX_FLOAT = Float.MAX_VALUE;
 
     private int token_count = 0;
+    
+    ArrayList<String> types = new ArrayList<>();
 
     ArrayList<SymbolMe> symbol_table = new ArrayList<>();
     
@@ -38,6 +40,7 @@ public class MatchProcessor {
             case "CONST_INT":
                 if (!valid_int(lexema)) 
                     rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
+            
                 else{					
                     symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
@@ -66,6 +69,21 @@ public class MatchProcessor {
             case "ID":
                 symbol_table.add(new SymbolMe(String.valueOf(token_count), lexema, token_value, "juna", "---", "---"));
                 lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
+            break;
+            
+            case "TYPE_INT":
+            	types.add(lexema);
+            	lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                break;
+                
+            case "TYPE_FLOAT":
+            	types.add(lexema);
+            	lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                break;
+                
+            case "TYPE_STRING":
+            	types.add(lexema);
+            	lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
             break;
 
             default: 
@@ -111,8 +129,20 @@ public class MatchProcessor {
         }
         return result;
     }
+    
+    private void process_types() {
+    	for (SymbolMe sym : symbol_table) {
+    		if (sym.getToken() == "ID") {
+    			sym.setType(types.get(0));
+    			types.remove(0);
+    		}
+    		
+    	}
+    
+    }
 
     public ArrayList<SymbolMe> get_result(){
+    	process_types();
         return symbol_table;
     }
 

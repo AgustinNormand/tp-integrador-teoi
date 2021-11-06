@@ -9,4 +9,14 @@
 	
 .Ver si es correcto ejecutar primero el .parse() antes que el next token.
 
+DECLARE.SECTION
+	[a1] := [FLOAT]
+ENDDECLARE.SECTION
+	
+PROGRAM.SECTION	//* Apertura del programa *//
+
+write  "asd"
+
+ENDPROGRAM.SECTION
+
 
