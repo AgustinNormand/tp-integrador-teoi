@@ -30,6 +30,8 @@ public class MatchProcessor {
     
     /* Lista que almacena todos los Lexemas y Tokens */ 
     ArrayList<SymbolMe> lexems_table = new ArrayList<>();
+    
+    boolean declare_section = true;
 
 
     public void process_match(String token_value, String lexema) {
@@ -67,7 +69,7 @@ public class MatchProcessor {
                 break;
 
             case "ID":
-                symbol_table.add(new SymbolMe(String.valueOf(token_count), lexema, token_value, "juna", "---", "---"));
+                process_new_id(String.valueOf(token_count), lexema, token_value, "TYPE", "---", "---");
                 lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
             break;
             
@@ -83,6 +85,12 @@ public class MatchProcessor {
                 
             case "TYPE_STRING":
             	types.add(lexema);
+            	lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
+            break;
+            
+            case "ENDDEC":
+            	declare_section = false;
+            	process_types();
             	lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
             break;
 
@@ -132,7 +140,8 @@ public class MatchProcessor {
     
     private void process_types() {
     	for (SymbolMe sym : symbol_table) {
-    		if (sym.getToken() == "ID") {
+    		//if (sym.getToken() == "ID" && declare_section) {
+    		if (sym.getToken() == "ID" && types.size() > 0) {
     			sym.setType(types.get(0));
     			types.remove(0);
     		}
@@ -140,9 +149,21 @@ public class MatchProcessor {
     	}
     
     }
+    
+    private void process_new_id(String token_count, String lexema, String token_value, String type, String string3, String string4) {
+    	String type_found = "UNDECLARED";
+    	for (SymbolMe sym : symbol_table) {
+    		if (sym.getToken() == "ID") {
+    			String nombre_id_declarado = sym.getName();
+    			if (nombre_id_declarado.equals(lexema)) {
+    				type_found = sym.getType();
+    			}
+    		}
+    	}
+    	symbol_table.add(new SymbolMe(token_count, lexema, token_value, type_found, "---", "---"));
+    }
 
     public ArrayList<SymbolMe> get_result(){
-    	process_types();
         return symbol_table;
     }
 

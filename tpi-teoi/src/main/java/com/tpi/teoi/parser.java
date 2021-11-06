@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java_cup.runtime.*;
 import java.util.*;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -277,6 +280,8 @@ public class parser extends java_cup.runtime.lr_parser {
 		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
  		s + "no reconocio. valor" + s.value);
+ 		JOptionPane.showMessageDialog(null, "Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
+                s + "no reconocio. valor" + s.value);
  	} 
 
  
