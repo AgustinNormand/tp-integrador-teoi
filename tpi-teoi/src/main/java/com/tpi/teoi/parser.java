@@ -270,6 +270,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 	
+	ArrayList<String> listaReglas = new ArrayList<String>();
 
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	public void syntax_error(Symbol s){

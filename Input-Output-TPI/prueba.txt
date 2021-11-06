@@ -6,7 +6,7 @@ ENDDECLARE.SECTION
 	
 PROGRAM.SECTION	//* Apertura del programa *//
 
-WRITE "testeo del analisis lexico";
+WRITE "testeo del analisis lexico"
 
 a1 ::= 30.5 
 b1 ::= 55

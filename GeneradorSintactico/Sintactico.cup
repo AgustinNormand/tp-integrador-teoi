@@ -10,6 +10,7 @@ import java.util.List;
 parser code
 {:
 	
+	ArrayList<String> listaReglas = new ArrayList<String>();
 
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	public void syntax_error(Symbol s){
