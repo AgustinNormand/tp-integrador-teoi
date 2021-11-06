@@ -64,8 +64,8 @@ public class MatchProcessor {
                 break;
 
             case "ID":
-                 symbol_table.add(new SymbolMe(String.valueOf(token_count), lexema, token_value, "juna", "---", "---"));
-                 lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
+                symbol_table.add(new SymbolMe(String.valueOf(token_count), lexema, token_value, "juna", "---", "---"));
+                lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
             break;
 
             default: 

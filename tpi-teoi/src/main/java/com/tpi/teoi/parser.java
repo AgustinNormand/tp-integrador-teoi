@@ -269,15 +269,17 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
-	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
- 	
-	ArrayList<String> listaReglas = new ArrayList<String>();
+	ArrayList<String> listaPruebaID = new ArrayList<String>();
 
- 	public void sintax(Symbol s){
+	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
+ 	public void syntax_error(Symbol s){
 		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
  		s + "no reconocio. valor" + s.value);
  	} 
+
+
+	public SymbolMe idType ( String type,  )
  
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -326,7 +328,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" Comienzo_programa Regla [0] compila, llega a start"); 
-													listaReglas.add("Comienzo_programa Regla [0] compila, START\n");
+													listaReglas.add("Comienzo_programa Regla [0] compila, START");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comienzo_programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

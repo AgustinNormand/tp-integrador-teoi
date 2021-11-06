@@ -269,15 +269,17 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
-	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
- 	
-	ArrayList<String> listaReglas = new ArrayList<String>();
+	ArrayList<String> listaPruebaID = new ArrayList<String>();
 
- 	public void sintax(Symbol s){
+	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
+ 	public void syntax_error(Symbol s){
 		 System.out.println("HOLA SOY UN ERROR..............");
  		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
  		s + "no reconocio. valor" + s.value);
  	} 
+
+
+	public SymbolMe idType ( String type,  )
  
 
 /** Cup generated class to encapsulate user supplied action code.*/

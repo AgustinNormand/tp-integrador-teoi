@@ -1,0 +1,12 @@
+
+.Ver manejo de errores cuando se genera un error sintactico.
+		(en que linea se genera el error?)
+
+
+.Ver como rayos hacer para poner el tipo en la tabla de simbolos.
+
+.Ver tema de RESULT Y : realcionado con el .cup	
+	
+.Ver si es correcto ejecutar primero el .parse() antes que el next token.
+
+
