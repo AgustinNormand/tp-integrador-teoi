@@ -269,7 +269,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
-	ArrayList<String> listaPruebaID = new ArrayList<String>();
+	
 
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	public void syntax_error(Symbol s){
@@ -278,8 +278,6 @@ public class parser extends java_cup.runtime.lr_parser {
  		s + "no reconocio. valor" + s.value);
  	} 
 
-
-	public SymbolMe idType ( String type,  )
  
 
 /** Cup generated class to encapsulate user supplied action code.*/

@@ -1,44 +1,37 @@
-//* prueba.txt *//
-
-//* Recuerden modificar de este archivo todo componente lexico que definieron
-diferente en su lenguaje, como operador de asignacion, apertura y cierre de
-ciclos y condicionales, operadores logicos, nombres de tipos, etc. *//
-
-
 DECLARE.SECTION
-[suma, contador, d1] := [FLOAT, INT, FLOAT]
-[actual, contar, palabra] := [FLOAT, FLOAT, STRING]
-[var] := [INT]
+	[a1, b1] := [FLOAT, INT]
+	[p1, p2, p3] := [FLOAT, FLOAT, INT]
+	[i, resul, ewr]:=[INT, INT, STRING]
 ENDDECLARE.SECTION
+	
+PROGRAM.SECTION	//* Apertura del programa *//
 
-PROGRAM.SECTION
+WRITE "testeo del analisis lexico";
 
-WRITE "Prueba.txt AnalizadorLexico"
+a1 ::= 30.5 
+b1 ::= 55
+i ::= 1
 
-contador ::= 0
-suma ::= 76.5
-contar ::= 18.22
-
-while (contador <= 9) {
-	contador := contador + 1
-	actual := (contador / 0.342) + (contador * (contar + 4.67))
-	suma := suma + actual
-	}
-WRITE  "La variable suma"
-
-
-If ((actual > 2) and (actual <> 0)){
-	WRITE  "actualesmayorque2ydistintode"
-	palabra = "es mayor"
+while (i<=6) {
+	resul ::= resul + TAKE(+ ; i ; [1,2,3,4,5,9])
+	i ::= i + 1
 }
-Else{
-	WRITE "no es mayor que 2"
-}
-
-//* TAKE Grupo 1, eliminar si no es tu tema especial *//
-
-resul ::= TAKE(+; id; [3])
-
-resul ::= TAKE(+; id; [1,2.5,32767])
+auxstr::= "hola"
+if (resul = 59) {
+    p1 ::= a1
+    p2 ::= b1
+    p3 ::= resul
+        
+}else{
+    if (resul > 59){
+	p3::= 999
+        WRITE "ewr"
+    }else{
+    	WRITE "Hola"
+    	auxint ::= 85200
+	WRITE "Mundo" 
+	WRITE 99.999
+    }
+} 
 
 ENDPROGRAM.SECTION
