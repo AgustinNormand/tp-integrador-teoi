@@ -326,7 +326,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" Comienzo_programa Regla [0] compila, llega a start"); 
-													listaReglas.add("Comienzo_programa Regla [0] compila, START\n");
+													listaReglas.add("Comienzo_programa Regla [0] compila, START");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("comienzo_programa",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -484,6 +484,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println(" bloque_condicion regla[14]");
+															listaReglas.add("lista de sentencias regla[14]");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("bloque_condicion",10, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

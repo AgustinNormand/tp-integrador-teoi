@@ -82,7 +82,8 @@ lista_de_sentencias ::=  sentencia {:System.out.println(" lista de sentencias-se
 lista_de_sentencias ::= lista_de_sentencias sentencia {:System.out.println(" lista de sentencias regla[13]");
 														listaReglas.add("lista de sentencias regla[13]");:};
 
-bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:System.out.println(" bloque_condicion regla[14]");:};
+bloque_condicion ::= BRACKET_OPEN condicion BRACKET_CLOSE {:System.out.println(" bloque_condicion regla[14]");
+															listaReglas.add("lista de sentencias regla[14]");:};
 
 bloque_sentencias ::= KEY_OPEN lista_de_sentencias KEY_CLOSE {:System.out.println(" bloque_sentencias regla[15]");
 															  listaReglas.add("bloque_Sentencias regla [15]");:};
