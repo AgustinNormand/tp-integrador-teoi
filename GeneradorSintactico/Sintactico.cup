@@ -14,9 +14,7 @@ parser code
 
 	/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
  	public void syntax_error(Symbol s){
-		 System.out.println("HOLA SOY UN ERROR..............");
- 		System.out.println("Error en linea la " + (s.right+1) + "columna" +s.left + ". " +
- 		s + "no reconocio. valor" + s.value);
+		 JOptionPane.showMessageDialog(null, "Error. No reconocio el valor: " + s.value);
  	} 
 
  :}

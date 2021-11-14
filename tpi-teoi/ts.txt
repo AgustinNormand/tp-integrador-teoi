@@ -1,48 +1,34 @@
-Symbol{order='3', name='a1', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='5', name='b1', token='ID', type='INT', value='---', size='---'}
-Symbol{order='14', name='p1', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='16', name='p2', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='18', name='p3', token='ID', type='INT', value='---', size='---'}
-Symbol{order='29', name='i', token='ID', type='INT', value='---', size='---'}
-Symbol{order='31', name='resul', token='ID', type='INT', value='---', size='---'}
-Symbol{order='33', name='ewr', token='ID', type='STRING', value='---', size='---'}
-Symbol{order='46', name='_testeodelanalisislexico', token='CONST_STRING', type='---', value='testeo del analisis lexico', size='26'}
-Symbol{order='47', name='a1', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='49', name='_30.5', token='CONST_FLOAT', type='---', value='30.5', size='---'}
-Symbol{order='50', name='b1', token='ID', type='INT', value='---', size='---'}
-Symbol{order='52', name='_55', token='CONST_INT', type='---', value='55', size='---'}
-Symbol{order='53', name='i', token='ID', type='INT', value='---', size='---'}
-Symbol{order='55', name='_1', token='CONST_INT', type='---', value='1', size='---'}
-Symbol{order='58', name='i', token='ID', type='INT', value='---', size='---'}
-Symbol{order='60', name='_6', token='CONST_INT', type='---', value='6', size='---'}
-Symbol{order='63', name='resul', token='ID', type='INT', value='---', size='---'}
-Symbol{order='65', name='resul', token='ID', type='INT', value='---', size='---'}
-Symbol{order='71', name='i', token='ID', type='INT', value='---', size='---'}
-Symbol{order='74', name='_1', token='CONST_INT', type='---', value='1', size='---'}
-Symbol{order='76', name='_2', token='CONST_INT', type='---', value='2', size='---'}
-Symbol{order='78', name='_3', token='CONST_INT', type='---', value='3', size='---'}
-Symbol{order='80', name='_4', token='CONST_INT', type='---', value='4', size='---'}
-Symbol{order='82', name='_5', token='CONST_INT', type='---', value='5', size='---'}
-Symbol{order='84', name='_9', token='CONST_INT', type='---', value='9', size='---'}
-Symbol{order='87', name='i', token='ID', type='INT', value='---', size='---'}
-Symbol{order='89', name='i', token='ID', type='INT', value='---', size='---'}
-Symbol{order='91', name='_1', token='CONST_INT', type='---', value='1', size='---'}
-Symbol{order='93', name='auxstr', token='ID', type='UNDECLARED', value='---', size='---'}
-Symbol{order='95', name='_hola', token='CONST_STRING', type='---', value='hola', size='4'}
-Symbol{order='98', name='resul', token='ID', type='INT', value='---', size='---'}
-Symbol{order='100', name='_59', token='CONST_INT', type='---', value='59', size='---'}
-Symbol{order='103', name='p1', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='105', name='a1', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='106', name='p2', token='ID', type='FLOAT', value='---', size='---'}
-Symbol{order='108', name='b1', token='ID', type='INT', value='---', size='---'}
-Symbol{order='109', name='p3', token='ID', type='INT', value='---', size='---'}
-Symbol{order='111', name='resul', token='ID', type='INT', value='---', size='---'}
-Symbol{order='117', name='resul', token='ID', type='INT', value='---', size='---'}
-Symbol{order='119', name='_59', token='CONST_INT', type='---', value='59', size='---'}
-Symbol{order='122', name='p3', token='ID', type='INT', value='---', size='---'}
-Symbol{order='124', name='_999', token='CONST_INT', type='---', value='999', size='---'}
-Symbol{order='126', name='_ewr', token='CONST_STRING', type='---', value='ewr', size='3'}
-Symbol{order='131', name='_Hola', token='CONST_STRING', type='---', value='Hola', size='4'}
-Symbol{order='132', name='auxint', token='ID', type='UNDECLARED', value='---', size='---'}
-Symbol{order='136', name='_Mundo', token='CONST_STRING', type='---', value='Mundo', size='5'}
-Symbol{order='138', name='_99.999', token='CONST_FLOAT', type='---', value='99.999', size='---'}
+___________________________________________________________________________________________
+| N  | Name                    | Token       | Type      | Value                     | Long|
+|==========================================================================================|
+| 3  | a1                      | ID          | FLOAT     | ---                       | --- |
+| 5  | b1                      | ID          | INT       | ---                       | --- |
+| 14 | p1                      | ID          | FLOAT     | ---                       | --- |
+| 16 | p2                      | ID          | FLOAT     | ---                       | --- |
+| 18 | p3                      | ID          | INT       | ---                       | --- |
+| 29 | i                       | ID          | INT       | ---                       | --- |
+| 31 | resul                   | ID          | INT       | ---                       | --- |
+| 33 | ewr                     | ID          | STRING    | ---                       | --- |
+| 46 | _testeodelanalisislexico| CONST_STRING| ---       | testeo del analisis lexico| 26  |
+| 49 | _30.5                   | CONST_FLOAT | ---       | 30.5                      | --- |
+| 52 | _55                     | CONST_INT   | ---       | 55                        | --- |
+| 55 | _1                      | CONST_INT   | ---       | 1                         | --- |
+| 60 | _6                      | CONST_INT   | ---       | 6                         | --- |
+| 74 | _1                      | CONST_INT   | ---       | 1                         | --- |
+| 76 | _2                      | CONST_INT   | ---       | 2                         | --- |
+| 78 | _3                      | CONST_INT   | ---       | 3                         | --- |
+| 80 | _4                      | CONST_INT   | ---       | 4                         | --- |
+| 82 | _5                      | CONST_INT   | ---       | 5                         | --- |
+| 84 | _9                      | CONST_INT   | ---       | 9                         | --- |
+| 91 | _1                      | CONST_INT   | ---       | 1                         | --- |
+| 93 | auxstr                  | ID          | UNDECLARED| ---                       | --- |
+| 95 | _hola                   | CONST_STRING| ---       | hola                      | 4   |
+| 100| _59                     | CONST_INT   | ---       | 59                        | --- |
+| 119| _59                     | CONST_INT   | ---       | 59                        | --- |
+| 124| _999                    | CONST_INT   | ---       | 999                       | --- |
+| 126| _ewr                    | CONST_STRING| ---       | ewr                       | 3   |
+| 131| _Hola                   | CONST_STRING| ---       | Hola                      | 4   |
+| 132| auxint                  | ID          | UNDECLARED| ---                       | --- |
+| 134| _852                    | CONST_INT   | ---       | 852                       | --- |
+| 136| _Mundo                  | CONST_STRING| ---       | Mundo                     | 5   |
+| 138| _99.999                 | CONST_FLOAT | ---       | 99.999                    | --- |

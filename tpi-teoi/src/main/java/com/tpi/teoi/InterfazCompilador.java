@@ -1,5 +1,7 @@
 package com.tpi.teoi;
 
+import dnl.utils.text.table.TextTable;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
@@ -264,7 +266,10 @@ public class InterfazCompilador extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		try {
                    Lexico Lexer = new Lexico(new StringReader(txaArchivo.getText()));
-                   parser sintactico = new parser(Lexer); /*probando */
+                   parser sintactico = new parser(Lexer);
+
+
+                   /*probando */
                    sintactico.parse(); /*- si este parse se hace despues del next_token, no compila los resultados de las tablas*/
                    textArea.setText(""); 
                    for (int i = 0; i < sintactico.listaReglas.size(); i++) { /*recorre la lista de reglas en el Parser y muestra en textArea*/
@@ -313,20 +318,13 @@ public class InterfazCompilador extends JFrame {
                    		File file = new File(ruta);
                    		file.createNewFile();
                    		FileWriter fw = new FileWriter(file);
-                   		BufferedWriter bw = new BufferedWriter(fw);
-       			
-                   		for (SymbolMe s : symbols_table) {
-                   			bw.write(s.toString());
-                   			bw.newLine();
-                   		}
-                   		
+                        PrintStream writetoEngineer = new PrintStream(
+                               new FileOutputStream("ts.txt", true));
+
+                        TextTable tt = new TextTable(model);
+                        tt.printTable(writetoEngineer,0);
                    		//JOptionPane.showMessageDialog(null, "Se generó un archivo ts.txt");
-                   		bw.close();
                    	}
-                   
-                 
-                   
-                   
         		} catch (Exception ex) {
         			JOptionPane.showMessageDialog(null, ex.toString());
         		}      		
@@ -366,7 +364,5 @@ public class InterfazCompilador extends JFrame {
         gbc_resultadoAnalisisTotal.gridx = 0;
         gbc_resultadoAnalisisTotal.gridy = 14;
         contentPane.add(panel2, gbc_resultadoAnalisisTotal);
-        
-       
     }
 }

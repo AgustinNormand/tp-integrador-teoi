@@ -1,5 +1,6 @@
 package com.tpi.teoi;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MatchProcessor {
@@ -34,15 +35,15 @@ public class MatchProcessor {
     boolean declare_section = true;
 
 
-    public void process_match(String token_value, String lexema) {
+    public void process_match(String token_value, String lexema) throws IOException {
         token_count = token_count + 1;
         
 
         switch (token_value) {
             case "CONST_INT":
-                if (!valid_int(lexema)) 
-                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
-            
+                if (!valid_int(lexema))
+                    throw new IOException("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
+
                 else{					
                     symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
@@ -51,7 +52,7 @@ public class MatchProcessor {
 
             case "CONST_FLOAT":
                 if (!valid_float(lexema))
-                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
+                    throw new IOException("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
                 else{
                     symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
@@ -60,7 +61,7 @@ public class MatchProcessor {
 
             case "CONST_STRING":
                 if (!valid_string(lexema))
-                    rejected_statements.add("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").\n");
+                    throw new IOException("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").\n");
                 else{
                     lexema = lexema.replaceAll("\"", "");
                     symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
@@ -100,8 +101,8 @@ public class MatchProcessor {
         }
     }
 
-    public void process_unmatch(String yytext, String yyline) {
-        rejected_statements.add("Caracter rechazado ("+ yytext + ")\n");
+    public void process_unmatch(String yytext, String yyline) throws java.io.IOException {
+        throw new IOException("Caracter rechazado ("+ yytext + ")\n");
     }
 
     private boolean valid_int(String x) {
@@ -140,27 +141,26 @@ public class MatchProcessor {
     
     private void process_types() {
     	for (SymbolMe sym : symbol_table) {
-    		//if (sym.getToken() == "ID" && declare_section) {
     		if (sym.getToken() == "ID" && types.size() > 0) {
     			sym.setType(types.get(0));
     			types.remove(0);
     		}
-    		
     	}
-    
+    	//Tirar error si hay alguno undeclared
     }
     
     private void process_new_id(String token_count, String lexema, String token_value, String type, String string3, String string4) {
-    	String type_found = "UNDECLARED";
-    	for (SymbolMe sym : symbol_table) {
-    		if (sym.getToken() == "ID") {
-    			String nombre_id_declarado = sym.getName();
-    			if (nombre_id_declarado.equals(lexema)) {
-    				type_found = sym.getType();
-    			}
-    		}
-    	}
-    	symbol_table.add(new SymbolMe(token_count, lexema, token_value, type_found, "---", "---"));
+        Boolean found = false;
+        for (SymbolMe sym : symbol_table){
+            if (sym.getToken() == "ID") {
+                if (sym.getName().toUpperCase().equals(lexema.toUpperCase())) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        if (!found)
+    	    symbol_table.add(new SymbolMe(token_count, lexema, token_value, "UNDECLARED", "---", "---"));
     }
 
     public ArrayList<SymbolMe> get_result(){
