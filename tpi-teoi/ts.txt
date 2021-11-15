@@ -1,34 +1,30 @@
-___________________________________________________________________________________________
-| N  | Name                    | Token       | Type      | Value                     | Long|
-|==========================================================================================|
-| 3  | a1                      | ID          | FLOAT     | ---                       | --- |
-| 5  | b1                      | ID          | INT       | ---                       | --- |
-| 14 | p1                      | ID          | FLOAT     | ---                       | --- |
-| 16 | p2                      | ID          | FLOAT     | ---                       | --- |
-| 18 | p3                      | ID          | INT       | ---                       | --- |
-| 29 | i                       | ID          | INT       | ---                       | --- |
-| 31 | resul                   | ID          | INT       | ---                       | --- |
-| 33 | ewr                     | ID          | STRING    | ---                       | --- |
-| 46 | _testeodelanalisislexico| CONST_STRING| ---       | testeo del analisis lexico| 26  |
-| 49 | _30.5                   | CONST_FLOAT | ---       | 30.5                      | --- |
-| 52 | _55                     | CONST_INT   | ---       | 55                        | --- |
-| 55 | _1                      | CONST_INT   | ---       | 1                         | --- |
-| 60 | _6                      | CONST_INT   | ---       | 6                         | --- |
-| 74 | _1                      | CONST_INT   | ---       | 1                         | --- |
-| 76 | _2                      | CONST_INT   | ---       | 2                         | --- |
-| 78 | _3                      | CONST_INT   | ---       | 3                         | --- |
-| 80 | _4                      | CONST_INT   | ---       | 4                         | --- |
-| 82 | _5                      | CONST_INT   | ---       | 5                         | --- |
-| 84 | _9                      | CONST_INT   | ---       | 9                         | --- |
-| 91 | _1                      | CONST_INT   | ---       | 1                         | --- |
-| 93 | auxstr                  | ID          | UNDECLARED| ---                       | --- |
-| 95 | _hola                   | CONST_STRING| ---       | hola                      | 4   |
-| 100| _59                     | CONST_INT   | ---       | 59                        | --- |
-| 119| _59                     | CONST_INT   | ---       | 59                        | --- |
-| 124| _999                    | CONST_INT   | ---       | 999                       | --- |
-| 126| _ewr                    | CONST_STRING| ---       | ewr                       | 3   |
-| 131| _Hola                   | CONST_STRING| ---       | Hola                      | 4   |
-| 132| auxint                  | ID          | UNDECLARED| ---                       | --- |
-| 134| _852                    | CONST_INT   | ---       | 852                       | --- |
-| 136| _Mundo                  | CONST_STRING| ---       | Mundo                     | 5   |
-| 138| _99.999                 | CONST_FLOAT | ---       | 99.999                    | --- |
+_______________________________________________________________________________________
+| N  | Name                    | Token       | Type  | Value                     | Long|
+|======================================================================================|
+| 3  | a1                      | ID          | FLOAT | ---                       | --- |
+| 5  | b1                      | ID          | INT   | ---                       | --- |
+| 14 | p1                      | ID          | FLOAT | ---                       | --- |
+| 16 | p2                      | ID          | FLOAT | ---                       | --- |
+| 18 | p3                      | ID          | INT   | ---                       | --- |
+| 29 | i                       | ID          | INT   | ---                       | --- |
+| 31 | resul                   | ID          | INT   | ---                       | --- |
+| 33 | ewr                     | ID          | STRING| ---                       | --- |
+| 46 | _testeodelanalisislexico| CONST_STRING| ---   | testeo del analisis lexico| 26  |
+| 49 | _30.5                   | CONST_FLOAT | ---   | 30.5                      | --- |
+| 52 | _55                     | CONST_INT   | ---   | 55                        | --- |
+| 55 | _1                      | CONST_INT   | ---   | 1                         | --- |
+| 60 | _6                      | CONST_INT   | ---   | 6                         | --- |
+| 74 | _1                      | CONST_INT   | ---   | 1                         | --- |
+| 76 | _2                      | CONST_INT   | ---   | 2                         | --- |
+| 78 | _3                      | CONST_INT   | ---   | 3                         | --- |
+| 80 | _4                      | CONST_INT   | ---   | 4                         | --- |
+| 82 | _5                      | CONST_INT   | ---   | 5                         | --- |
+| 84 | _9                      | CONST_INT   | ---   | 9                         | --- |
+| 91 | _1                      | CONST_INT   | ---   | 1                         | --- |
+| 97 | _59                     | CONST_INT   | ---   | 59                        | --- |
+| 116| _59                     | CONST_INT   | ---   | 59                        | --- |
+| 121| _999                    | CONST_INT   | ---   | 999                       | --- |
+| 123| _ewr                    | CONST_STRING| ---   | ewr                       | 3   |
+| 128| _Hola                   | CONST_STRING| ---   | Hola                      | 4   |
+| 130| _Mundo                  | CONST_STRING| ---   | Mundo                     | 5   |
+| 132| _99.999                 | CONST_FLOAT | ---   | 99.999                    | --- |

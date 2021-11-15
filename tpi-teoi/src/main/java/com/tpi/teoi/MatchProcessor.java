@@ -139,17 +139,16 @@ public class MatchProcessor {
         return result;
     }
     
-    private void process_types() {
+    private void process_types(){
     	for (SymbolMe sym : symbol_table) {
     		if (sym.getToken() == "ID" && types.size() > 0) {
     			sym.setType(types.get(0));
     			types.remove(0);
     		}
     	}
-    	//Tirar error si hay alguno undeclared
     }
     
-    private void process_new_id(String token_count, String lexema, String token_value, String type, String string3, String string4) {
+    private void process_new_id(String token_count, String lexema, String token_value, String type, String string3, String string4) throws IOException {
         Boolean found = false;
         for (SymbolMe sym : symbol_table){
             if (sym.getToken() == "ID") {
@@ -160,7 +159,10 @@ public class MatchProcessor {
             }
         }
         if (!found)
-    	    symbol_table.add(new SymbolMe(token_count, lexema, token_value, "UNDECLARED", "---", "---"));
+            if(declare_section)
+    	        symbol_table.add(new SymbolMe(token_count, lexema, token_value, "UNDECLARED", "---", "---"));
+            else
+                throw new IOException("ID utilizado no declarado: "+lexema);
     }
 
     public ArrayList<SymbolMe> get_result(){
