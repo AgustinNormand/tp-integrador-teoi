@@ -16,7 +16,6 @@ while (i<=6) {
 	resul ::= resul + TAKE(+ ; i ; [1,2,3,4,5,9])
 	i ::= i + 1
 }
-auxstr::= "hola"
 if (resul = 59) {
     p1 ::= a1
     p2 ::= b1
@@ -28,7 +27,6 @@ if (resul = 59) {
         WRITE "ewr"
     }else{
     	WRITE "Hola"
-    	auxint ::= 85200
 	WRITE "Mundo" 
 	WRITE 99.999
     }

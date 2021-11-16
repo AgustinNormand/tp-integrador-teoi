@@ -36,7 +36,7 @@ public class MatchProcessor {
 
 
     public void process_match(String token_value, String lexema) throws IOException {
-        token_count = token_count + 1;
+        token_count = token_count + 1; //FIX-ME
         
 
         switch (token_value) {
@@ -44,8 +44,9 @@ public class MatchProcessor {
                 if (!valid_int(lexema))
                     throw new IOException("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
 
-                else{					
-                    symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                else{
+                    process_new_constant(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    //symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
@@ -54,7 +55,8 @@ public class MatchProcessor {
                 if (!valid_float(lexema))
                     throw new IOException("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+")\n");
                 else{
-                    symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    process_new_constant(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
+                    //symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema, token_value, "---", lexema, "---"));
                     lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
@@ -64,7 +66,8 @@ public class MatchProcessor {
                     throw new IOException("Token número "+token_count+" rechazado. "+ token_value +" inválida ("+lexema+"). Longitud: ("+lexema.replaceAll("\"", "").length()+").\n");
                 else{
                     lexema = lexema.replaceAll("\"", "");
-                    symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
+                    process_new_constant(new SymbolMe(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
+                    //symbol_table.add(new SymbolMe(String.valueOf(token_count), "_"+lexema.replaceAll(" ", ""), token_value, "---", lexema, String.valueOf(lexema.length())));
                     lexems_table.add(new SymbolMe(String.valueOf(token_count), "", token_value, "", lexema, ""));
                 }
                 break;
@@ -147,7 +150,20 @@ public class MatchProcessor {
     		}
     	}
     }
-    
+
+    private void process_new_constant(SymbolMe symbolMe) {
+        Boolean found = false;
+        for (SymbolMe sym : symbol_table){
+            if (sym.getName().toUpperCase().equals(symbolMe.getName().toUpperCase())) {
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            symbol_table.add(symbolMe);
+        }
+    }
+
     private void process_new_id(String token_count, String lexema, String token_value, String type, String string3, String string4) throws IOException {
         Boolean found = false;
         for (SymbolMe sym : symbol_table){
