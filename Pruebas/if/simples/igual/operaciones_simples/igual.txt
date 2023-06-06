@@ -1,0 +1,29 @@
+DECLARE.SECTION
+	[a3] := [INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a3 ::= 50
+
+if (a3 == 50) { //* IF SIMPLES por IGUAL SIN ELSE, CASO VERDADERO IGUAL *//
+    write "a3 igual que 50"
+}
+
+if (a3 == 10) { //* IF SIMPLES por IGUAL SIN ELSE, CASO FALSO *//
+    write "a3 igual que 10"
+}
+
+if (a3 == 50) { //* IF SIMPLES por IGUAL CON ELSE, CASO VERDADERO IGUAL *//
+    write "a3 igual que 50"
+} else{
+    write "a3 no es igual que 50"
+}
+
+if (a3 == 1) { //* IF SIMPLES por IGUAL CON ELSE, CASO FALSO *//
+    write "a3 igual que 1"
+} else{
+    write "a3 no es igual que 1"
+}
+
+ENDPROGRAM.SECTION

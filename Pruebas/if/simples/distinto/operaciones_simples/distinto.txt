@@ -1,0 +1,29 @@
+DECLARE.SECTION
+	[a3] := [INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a3 ::= 50
+
+if (a3 <> 2) { //* IF SIMPLES por DISTINTO SIN ELSE, CASO VERDADERO *//
+    write "a3 distinto que 2"
+}
+
+if (a3 <> 50) { //* IF SIMPLES por DISTINTO SIN ELSE, CASO FALSO IGUAL *//
+    write "a3 distinto que 50"
+}
+
+if (a3 <> 6) { //* IF SIMPLES por DISTINTO CON ELSE, CASO VERDADERO *//
+    write "a3 distinto que 6"
+} else{
+    write "a3 no es distinto que 6"
+}
+
+if (a3 <> 50) { //* IF SIMPLES por DISTINTO CON ELSE, CASO FALSO IGUAL *//
+    write "a3 distinto que 50"
+} else{
+    write "a3 no es distinto que 50"
+}
+
+ENDPROGRAM.SECTION

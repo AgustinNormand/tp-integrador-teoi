@@ -1,0 +1,35 @@
+DECLARE.SECTION
+  	[i] := [INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+i ::= 0
+
+while (i <= 6) {
+  write i
+  i ::= i + 1
+}
+
+i ::= 0
+
+while ((i <= 6) and (i >= 0)) {
+  write i
+  i ::= i + 1
+}
+
+i ::= 0
+
+while ((i <= 6) or (i <= 7)) {
+  write i
+  i ::= i + 1
+}
+
+i ::= 0
+
+while ((i <= 6) and (i > 0)) {
+  write i
+  i ::= i + 1
+}
+
+ENDPROGRAM.SECTION

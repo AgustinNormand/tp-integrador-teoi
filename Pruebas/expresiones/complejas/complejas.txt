@@ -1,0 +1,18 @@
+DECLARE.SECTION
+	[z,a,b,c,d,e,f] := [INT,INT,INT,INT,INT,INT,INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a ::= 1
+b ::= 2
+c ::= 3
+d ::= 4
+e ::= 5
+f ::= 6
+
+z ::= a + b * c - d / (e + f) + 20
+
+write z
+
+ENDPROGRAM.SECTION

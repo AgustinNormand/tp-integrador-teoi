@@ -1,0 +1,3 @@
+a3 distinto que 2
+a3 distinto que 6
+a3 no es distinto que 50

@@ -1,0 +1,14 @@
+DECLARE.SECTION
+	[a3] := [INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a3 ::= 50
+
+if (a3 + 5 > 30) {  //* IF SIMPLES por MAYOR SIN ELSE, CASO VERDADERO *//
+    write "a3 mayor que 30"
+}
+
+
+ENDPROGRAM.SECTION

@@ -1,0 +1,49 @@
+DECLARE.SECTION
+	[a3] := [INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a3 ::= 50
+
+if ((a3 > 30) and (a3 > 20)) {  //* IF SIMPLES por MAYOR SIN ELSE, CASO VERDADERO AND VERDADERO *//
+    write "a3 mayor que 30 y que 20"
+}
+
+if ((a3 > 50) and (a3 > 50)) {  //* IF SIMPLES por MAYOR SIN ELSE, CASO FALSO AND FALSO *//
+    write "a3 mayor que 50 y que 50"
+}
+
+if ((a3 > 20) and (a3 > 50)) {  //* IF SIMPLES por MAYOR SIN ELSE, CASO VERADERO AND FALSO *//
+    write "a3 mayor que 20 y que 50"
+}
+
+if ((a3 > 50) and (a3 > 20)) {  //* IF SIMPLES por MAYOR SIN ELSE, CASO FALSO AND VERADERO *//
+    write "a3 mayor que 50 y que 20"
+}
+
+if ((a3 > 30) and (a3 > 20)) {  //* IF SIMPLES por MAYOR CON ELSE, CASO VERDADERO AND VERDADERO *//
+    write "a3 mayor que 30 y que 20"
+} else {
+    write "a3 no es mayor que 30 y que 20"
+}
+
+if ((a3 > 50) and (a3 > 50)) {  //* IF SIMPLES por MAYOR CON ELSE, CASO FALSO AND FALSO *//
+    write "a3 es mayor que 50 y que 50"
+} else {
+    write "a3 no es mayor que 50 y que 50"
+}
+
+if ((a3 > 20) and (a3 > 50)) {  //* IF SIMPLES por MAYOR CON ELSE, CASO VERADERO AND FALSO *//
+    write "a3 mayor que 20 y que 50"
+} else {
+    write "a3 no es mayor que 20 y que 50"
+}
+
+if ((a3 > 50) and (a3 > 20)) {  //* IF SIMPLES por MAYOR CON ELSE, CASO FALSO AND VERADERO *//
+    write "a3 mayor que 50 y que 20"
+} else {
+    write "a3 no es mayor que 50 y que 20"
+}
+
+ENDPROGRAM.SECTION

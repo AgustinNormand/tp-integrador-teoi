@@ -2,9 +2,10 @@
 
 package com.tpi.teoi;
 import java_cup.runtime.Symbol;
-import java_cup.runtime.*;
+import java_cup.runtime.*; //para utilizar cup
 import java.util.*;
-import jflex.sym;
+
+
 
 
 /**
@@ -530,20 +531,19 @@ public class Lexico implements java_cup.runtime.Scanner {
 
   /* user code: */
 	MatchProcessor mp = new MatchProcessor();
-	public ArrayList<com.tpi.teoi.Symbol> get_result(){
+	public ArrayList<com.tpi.teoi.SymbolMe> get_result(){
 	    return mp.get_result();
 	}
 
 	public ArrayList<String> get_rejected(){
-		return mp.get_rejected();
-    }
-	
-	/*
-	 * Método que solicita a la clase MatchProcessor la lista de lexemas/tokens
-	 */
-	public ArrayList<com.tpi.teoi.Symbol> get_result_lexemas(){
+    	    return mp.get_rejected();
+    	}
+
+    public ArrayList<com.tpi.teoi.SymbolMe> get_result_lexemas(){
 	    return mp.get_result_lexemas();
-	}
+	}	
+    	
+
 
   /**
    * Creates a new scanner
@@ -937,11 +937,13 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 42: break;
           case 2: 
             { mp.process_match("ID", yytext());
+				return new Symbol(sym.ID,yytext());
             } 
             // fall through
           case 43: break;
           case 3: 
             { mp.process_match("CONST_INT", yytext());
+				return new Symbol(sym.CONST_INT,yytext());
             } 
             // fall through
           case 44: break;
@@ -952,156 +954,187 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 45: break;
           case 5: 
             { mp.process_match("SIG_DIV", yytext());
+				return new Symbol(sym.SIG_DIV,yytext());
             } 
             // fall through
           case 46: break;
           case 6: 
             { mp.process_match("SIG_MUL", yytext());
+				return new Symbol(sym.SIG_MUL,yytext());
             } 
             // fall through
           case 47: break;
           case 7: 
             { mp.process_match("MAYOR", yytext());
+				return new Symbol(sym.MAYOR,yytext());
             } 
             // fall through
           case 48: break;
           case 8: 
             { mp.process_match("IGUAL", yytext());
+				return new Symbol(sym.IGUAL,yytext());
             } 
             // fall through
           case 49: break;
           case 9: 
             { mp.process_match("MENOR", yytext());
+				return new Symbol(sym.MENOR,yytext());
             } 
             // fall through
           case 50: break;
           case 10: 
             { mp.process_match("SIG_MENOS", yytext());
+				return new Symbol(sym.SIG_MENOS,yytext());
             } 
             // fall through
           case 51: break;
           case 11: 
             { mp.process_match("SIG_MAS", yytext());
+				return new Symbol(sym.SIG_MAS,yytext());
             } 
             // fall through
           case 52: break;
           case 12: 
             { mp.process_match("COMA", yytext());
+				return new Symbol(sym.COMA,yytext());
             } 
             // fall through
           case 53: break;
           case 13: 
             { mp.process_match("PUNTO_Y_COMA", yytext());
+				return new Symbol(sym.PUNTO_Y_COMA,yytext());
             } 
             // fall through
           case 54: break;
           case 14: 
             { mp.process_match("SQR_BRACKET_OPEN", yytext());
+				return new Symbol(sym.SQR_BRACKET_OPEN,yytext());
             } 
             // fall through
           case 55: break;
           case 15: 
             { mp.process_match("SQR_BRACKET_CLOSE", yytext());
+				return new Symbol(sym.SQR_BRACKET_CLOSE,yytext());
             } 
             // fall through
           case 56: break;
           case 16: 
             { mp.process_match("BRACKET_OPEN", yytext());
+				return new Symbol(sym.BRACKET_OPEN,yytext());
             } 
             // fall through
           case 57: break;
           case 17: 
             { mp.process_match("BRACKET_CLOSE", yytext());
+				return new Symbol(sym.BRACKET_CLOSE,yytext());
             } 
             // fall through
           case 58: break;
           case 18: 
             { mp.process_match("KEY_OPEN", yytext());
+				return new Symbol(sym.KEY_OPEN,yytext());
             } 
             // fall through
           case 59: break;
           case 19: 
             { mp.process_match("KEY_CLOSE", yytext());
+				return new Symbol(sym.KEY_CLOSE,yytext());
             } 
             // fall through
           case 60: break;
           case 20: 
             { mp.process_match("IF", yytext());
+				return new Symbol(sym.IF,yytext());
             } 
             // fall through
           case 61: break;
           case 21: 
             { mp.process_match("OR", yytext());
+				return new Symbol(sym.OR,yytext());
             } 
             // fall through
           case 62: break;
           case 22: 
             { mp.process_match("MAYOR_I", yytext());
+				return new Symbol(sym.MAYOR_I,yytext());
             } 
             // fall through
           case 63: break;
           case 23: 
             { mp.process_match("DISTINTO", yytext());
+				return new Symbol(sym.DISTINTO,yytext());
             } 
             // fall through
           case 64: break;
           case 24: 
             { mp.process_match("MENOR_I", yytext());
+				return new Symbol(sym.MENOR_I,yytext());
             } 
             // fall through
           case 65: break;
           case 25: 
             { mp.process_match("CONST_STRING", yytext());
+				return new Symbol(sym.CONST_STRING,yytext());
             } 
             // fall through
           case 66: break;
           case 26: 
             { mp.process_match("OP_DECLARE", yytext());
+				return new Symbol(sym.OP_DECLARE,yytext());
             } 
             // fall through
           case 67: break;
           case 27: 
             { mp.process_match("CONST_FLOAT", yytext());
+				return new Symbol(sym.CONST_FLOAT,yytext());
             } 
             // fall through
           case 68: break;
           case 28: 
             { mp.process_match("TYPE_INT", yytext());
+				return new Symbol(sym.TYPE_INT,yytext());
             } 
             // fall through
           case 69: break;
           case 29: 
             { mp.process_match("AND", yytext());
+				return new Symbol(sym.AND,yytext());
             } 
             // fall through
           case 70: break;
           case 30: 
             { mp.process_match("OP_ASSIGN", yytext());
+				return new Symbol(sym.OP_ASSIGN,yytext());
             } 
             // fall through
           case 71: break;
           case 31: 
             { mp.process_match("TAKE", yytext());
+				return new Symbol(sym.TAKE,yytext());
             } 
             // fall through
           case 72: break;
           case 32: 
             { mp.process_match("ELSE", yytext());
+				return new Symbol(sym.ELSE,yytext());
             } 
             // fall through
           case 73: break;
           case 33: 
             { mp.process_match("TYPE_FLOAT", yytext());
+				return new Symbol(sym.TYPE_FLOAT,yytext());
             } 
             // fall through
           case 74: break;
           case 34: 
             { mp.process_match("EXIT", yytext());
+				return new Symbol(sym.EXIT,yytext());
             } 
             // fall through
           case 75: break;
           case 35: 
             { mp.process_match("WHILE", yytext());
+				return new Symbol(sym.WHILE,yytext());
             } 
             // fall through
           case 76: break;
@@ -1112,26 +1145,31 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 77: break;
           case 37: 
             { mp.process_match("TYPE_STRING", yytext());
+				return new Symbol(sym.TYPE_STRING,yytext());
             } 
             // fall through
           case 78: break;
           case 38: 
             { mp.process_match("DEC", yytext());
+				return new Symbol(sym.DEC,yytext());
             } 
             // fall through
           case 79: break;
           case 39: 
             { mp.process_match("START", yytext());
+				return new Symbol(sym.START,yytext());
             } 
             // fall through
           case 80: break;
           case 40: 
             { mp.process_match("ENDDEC", yytext());
+				return new Symbol(sym.ENDDEC,yytext());
             } 
             // fall through
           case 81: break;
           case 41: 
             { mp.process_match("FINALIZE", yytext());
+				return new Symbol(sym.FINALIZE,yytext());
             } 
             // fall through
           case 82: break;

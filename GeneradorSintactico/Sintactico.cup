@@ -1,0 +1,536 @@
+package com.tpi.teoi;
+
+import java.util.ArrayList;
+import java_cup.runtime.*; //para utilizar cup
+import java.util.*;
+import java.util.List;
+import javax.swing.*;
+import com.tpi.ast.*;
+
+parser code
+{:
+ArrayList<String> listaReglas = new ArrayList<String>();
+
+/**METODO AL QUE SE LLAMA AUTOMATICAMENTE ANTE ALGUN ERROR SINTACTICO*/
+public void syntax_error(Symbol s){
+    JOptionPane.showMessageDialog(null, "Error. No reconocio el valor: " + s.value);
+}
+
+public Nodo padre;
+:}
+ 
+action code
+{:
+//public String resultado = "";
+//public int contadorAvg = 0;
+
+public List<NodoSentencia> a ;
+public List<NodoSentencia> sentencias_take ;
+
+public List<Integer> lista;
+:}
+
+/*DECLARACION DE TERMINALES (TOKEN DEL ANALIZADOR LEXICO) */
+
+terminal LETRA, DIGITO, PRIMER_NUMERO, CARACTERES_ESPECIALES, EspacioBlanco, COMMENT_BEG, COMMENT_END, COMMENT , TYPE_INT, TYPE_STRING, TYPE_FLOAT, AND, OR, IGUAL, 			DISTINTO, MAYOR, MAYOR_I, MENOR, MENOR_I, DEC, ENDDEC, START, FINALIZE, IF, WHILE, TAKE, EXIT, 		ELSE,SIG_MENOS, SIG_MAS, SIG_DIV, SIG_MUL, COMA, PUNTO, PUNTO_Y_COMA, COM, SQR_BRACKET_OPEN, SQR_BRACKET_CLOSE, BRACKET_OPEN, BRACKET_CLOSE, KEY_OPEN, KEY_CLOSE, OP_ASSIGN, OP_DECLARE, WRITE;
+
+terminal String ID, CONST_STRING, CONST_INT, CONST_FLOAT;
+
+/*DECLARACIONES NO TERMINALES (LOS NUESTROS) */
+
+non terminal comienzo_programa;
+non terminal declaracion_programa;
+non terminal bloque_definicion;
+non terminal renglon_definicion;
+non terminal inicial;
+non terminal separador;
+non terminal final;
+
+non terminal NodoPrograma programa;
+non terminal List<NodoSentencia> lista_de_sentencias, bloque_sentencias, lista_constantes_resta, lista_constantes_suma;
+non terminal NodoSentencia sentencia, write;
+non terminal NodoAsignacion asignacion;
+non terminal NodoExpresion expresion, termino, factor; 
+non terminal NodoIf seleccion;
+non terminal NodoWhile iteracion;
+non terminal NodoExpresionBooleana condicion, bloque_condicion;
+non terminal NodoComparacion comparacion;
+non terminal NodoTake take;
+
+/* SE DECLARA POR CUAL COMIENZA */
+
+start  with comienzo_programa;
+
+/*BLOQUE DE GLC*/
+
+comienzo_programa ::= declaracion_programa programa:p 
+{:
+  System.out.println(" Comienzo_programa Regla [0] compila, llega a start"); 
+  listaReglas.add("Comienzo_programa Regla [0] compila, START");
+  RESULT = p;
+:};
+
+declaracion_programa ::= DEC bloque_definicion ENDDEC {:System.out.println(" Declaracion_programa regla[1]"); 
+													listaReglas.add("Declaracion_programa regla[1]");:};
+
+bloque_definicion ::= renglon_definicion {:System.out.println(" bloque_definicion regla[2]");
+													listaReglas.add("bloque_definicion regla[2]");:};	
+
+bloque_definicion ::= bloque_definicion renglon_definicion {:System.out.println(" bloque_definicion regla[3]");
+													listaReglas.add("bloque_definicion regla[3]");:};	
+
+renglon_definicion	::= inicial separador final {:System.out.println(" renglon_definicion regla[4]");
+													listaReglas.add("renglon_definicion regla[4]");:};	
+
+inicial ::= SQR_BRACKET_OPEN ID {:System.out.println(" inicial regla[5]");
+								listaReglas.add("inicial regla[5]");:};	
+
+final ::= TYPE_INT SQR_BRACKET_CLOSE  {:System.out.println(" final regla[6]");
+										listaReglas.add(" final regla[6]");:};	
+
+final ::= TYPE_FLOAT SQR_BRACKET_CLOSE {:System.out.println(" final regla[7]");
+										listaReglas.add("final regla[7]");:};	
+
+final ::= TYPE_STRING SQR_BRACKET_CLOSE {:System.out.println(" final regla[8]");
+										listaReglas.add("final regla[8]");:};	
+
+separador ::= SQR_BRACKET_CLOSE OP_DECLARE SQR_BRACKET_OPEN {:System.out.println(" separador regla[9]");
+															listaReglas.add("separador regla[9]");:};
+
+separador::= COMA ID separador TYPE_INT COMA {:System.out.println(" separador int regla[10]"); listaReglas.add(" separador int regla[10]");:} 
+           | COMA ID separador TYPE_FLOAT COMA {:System.out.println(" separador float float regla[10]"); listaReglas.add(" separador float regla[10]");:}
+           | COMA ID separador TYPE_STRING COMA {:System.out.println(" separador string regla[10]"); listaReglas.add(" separador string regla[10]");:};
+
+programa ::= START lista_de_sentencias:s FINALIZE 
+{:
+  System.out.println(" programa regla[11]");
+	listaReglas.add("programa regla[11]");
+	RESULT = new NodoPrograma(s);
+:};
+
+// Begin Sentencias
+
+lista_de_sentencias ::= lista_de_sentencias:ss sentencia:s
+{:
+  System.out.println(" lista de sentencias regla[12]");
+	listaReglas.add("lista de sentencias regla[12]");
+	ss.add(s);
+  RESULT = ss;
+:};
+
+lista_de_sentencias ::=  sentencia:s 
+{:
+  System.out.println(" lista de sentencias-sentencia regla[13]");
+	listaReglas.add(" lista de sentencias-sentencia regla[13]");
+	a = new ArrayList<NodoSentencia>();
+	a.add(s);
+	RESULT = a;
+:};
+
+bloque_sentencias ::= KEY_OPEN lista_de_sentencias:ss KEY_CLOSE
+{:
+  System.out.println(" bloque_sentencias regla[15]");
+  listaReglas.add("bloque_Sentencias regla [15]");
+  RESULT = ss;
+:};
+
+sentencia ::= write:w
+{:
+  System.out.println(" sentencia-write regla[17]");
+	listaReglas.add("sentencia-write regla[17]");
+	RESULT = w;
+:};
+
+sentencia ::= asignacion:a
+{:
+  System.out.println(" sentencia-asignacion regla[16]");
+  listaReglas.add("sentencia-asignacion regla[16]");
+  RESULT = a;
+:};
+
+sentencia ::= iteracion:i
+{:
+    System.out.println(" sentencia-iteracion regla[18]");
+    listaReglas.add("sentencia-iteracion regla[18]");
+    RESULT = i;
+:};
+
+sentencia ::= seleccion:s
+{:
+  System.out.println(" sentencia-seleccion regla[19]");
+	listaReglas.add("sentencia-seleccion regla[19]");
+	RESULT = s;
+:};
+
+// End Sentencias
+
+// Begin Write
+
+write ::= EXIT CONST_FLOAT:cte_float
+{:
+  System.out.println("write regla[32]");
+  listaReglas.add("write float regla[32]");
+  RESULT = new NodoWriteFloat(Float.parseFloat(cte_float));
+:};
+
+write ::= EXIT CONST_INT:cte_int
+{:
+  System.out.println("write regla[32]");
+  listaReglas.add("write int regla[32]");
+  RESULT = new NodoWriteInt(Integer.parseInt(cte_int));
+:};
+
+write ::= EXIT CONST_STRING:cte_string
+{:
+  System.out.println("write regla[32]");
+  listaReglas.add("write string regla[32]");
+  RESULT = new NodoWriteString(cte_string);
+:};
+
+write ::= EXIT ID:id
+{:
+  System.out.println("write regla[32]");
+  listaReglas.add("write id regla[32]");
+  RESULT = new NodoWriteId(id);
+:};
+
+// End Write
+
+// Begin Asignación
+
+asignacion ::= ID:id OP_ASSIGN expresion:e
+{:
+  System.out.println(" asignacion regla[20]");
+	listaReglas.add("asignacion regla[20]");
+	RESULT= new NodoAsignacion(new NodoIdentificador(id), e);
+:};
+
+// End Asignación
+
+// Begin IF
+
+seleccion ::= IF bloque_condicion:c bloque_sentencias:s
+{:
+  System.out.println(" seleccion regla[21]");
+  listaReglas.add("seleccion regla[21]");
+  RESULT = new NodoIf(c, s, null);
+:};
+
+seleccion  ::= IF bloque_condicion:c bloque_sentencias:s ELSE bloque_sentencias:b
+{:
+    System.out.println("seleccion regla[22]");
+    listaReglas.add("seleccion regla[22]");
+    RESULT = new NodoIf(c, s, b);
+:};
+
+
+// End IF
+
+// Begin While
+
+iteracion ::= WHILE bloque_condicion:c bloque_sentencias:s
+{:
+    System.out.println(" iteracion regla[23]");
+    listaReglas.add("iteracion regla[23]");
+    RESULT = new NodoWhile(c, s);
+:};
+
+// End While
+
+// Begin Condicion
+
+bloque_condicion ::= BRACKET_OPEN condicion:c BRACKET_CLOSE 
+{:
+  System.out.println(" bloque_condicion regla[14]");
+	listaReglas.add("lista de sentencias regla[14]");
+	RESULT = c;
+
+:};
+
+condicion ::= comparacion:c
+{:
+    System.out.println(" condicion regla[24]");
+    listaReglas.add("condicion regla[24]");
+    RESULT = c;
+:};
+
+condicion ::= BRACKET_OPEN comparacion:a BRACKET_CLOSE AND BRACKET_OPEN comparacion:b BRACKET_CLOSE
+{:
+    System.out.println(" condicion regla[25]");
+    listaReglas.add("condicion regla[25]");
+    RESULT = new NodoAnd(a, b);
+:};
+
+condicion ::= BRACKET_OPEN comparacion:a BRACKET_CLOSE OR BRACKET_OPEN comparacion:b BRACKET_CLOSE
+{:
+    System.out.println(" condicion regla[26]");
+    listaReglas.add("condicion regla[26]");
+    RESULT = new NodoOr(a, b);
+:};
+
+comparacion ::= expresion:a MAYOR expresion:b
+{:
+    System.out.println(" comparacion regla[27]");
+    listaReglas.add("comparacion regla[27]");
+    RESULT = new NodoMayor(a, b);
+:};
+
+comparacion ::= expresion:a MENOR expresion:b
+{:
+    System.out.println(" comparacion regla[27]");
+    listaReglas.add("comparacion regla[27]");
+    RESULT = new NodoMenor(a, b);
+:};
+
+comparacion ::= expresion:a IGUAL expresion:b
+{:
+    System.out.println(" comparacion regla[27]");
+    listaReglas.add("comparacion regla[27]");
+    RESULT = new NodoIgual(a, b);
+:};
+
+comparacion ::= expresion:a DISTINTO expresion:b
+{:
+    System.out.println(" comparacion regla[27]");
+    listaReglas.add("comparacion regla[27]");
+    RESULT = new NodoDistinto(a, b);
+:};
+
+comparacion ::= expresion:a MAYOR_I expresion:b
+{:
+    System.out.println(" comparacion regla[27]");
+    listaReglas.add("comparacion regla[27]");
+    RESULT = new NodoMayorIgual(a, b);
+:};
+
+comparacion ::= expresion:a MENOR_I expresion:b
+{:
+    System.out.println(" comparacion regla[27]");
+    listaReglas.add("comparacion regla[27]");
+    RESULT = new NodoMenorIgual(a, b);
+:};
+
+// End Condicion
+
+
+
+
+
+// Begin Expresion
+
+expresion ::=  expresion:a SIG_MAS termino:b
+{:
+  System.out.println("expresion suma regla[29]"); 
+  listaReglas.add("expresion suma regla[29]");
+  RESULT = new NodoSuma(a, b);
+:};
+
+expresion ::= expresion:a SIG_MENOS termino:b
+{:
+  System.out.println("expresion resta regla[29]"); 
+  listaReglas.add("expresion resta regla[29]");
+  RESULT = new NodoResta(a, b);
+:};
+
+expresion ::= termino:a 
+{:
+  System.out.println("expresion termino regla[29]"); 
+  listaReglas.add("expresion termino regla[29]");
+  RESULT = a;
+:};
+
+expresion ::= CONST_STRING:str
+{:
+  System.out.println("expresion string regla[29]"); 
+  listaReglas.add("expresion string regla[29]");
+  RESULT = new NodoConstanteString(str);
+:};
+
+
+termino ::= factor:a
+{:
+  System.out.println(" termino factor regla[30]"); 
+  listaReglas.add("termino factor regla[30]");
+  RESULT = a;
+:};
+
+termino ::= termino:a SIG_MUL factor:b
+{:
+    System.out.println(" termino multiplicacion regla[30]");
+    listaReglas.add("termino multiplicacion regla[30]");
+    RESULT = new NodoMultiplicacion(a, b);
+:};
+
+termino ::= termino:a SIG_DIV factor:b
+{:
+    System.out.println(" termino division regla[30]");
+    listaReglas.add("termino division regla[30]");
+    RESULT = new NodoDivision(a, b);
+:};
+
+factor ::= ID:id
+{:
+  System.out.println(" factor int regla[31]"); 
+  listaReglas.add(" factor int regla[31]");
+  RESULT =new NodoIdentificador(id);
+:};
+
+factor ::= CONST_INT:cte_int
+{:
+  System.out.println(" factor int regla[31]"); 
+  listaReglas.add(" factor int regla[31]");
+  RESULT = new NodoConstante(Integer.parseInt(cte_int));
+:};
+
+factor ::= CONST_FLOAT:cte_float 
+{:
+  System.out.println(" factor float regla[31]"); 
+  listaReglas.add(" factor float regla[31]");
+  RESULT = new NodoConstanteFloat(Float.parseFloat(cte_float));
+:};
+
+factor ::= take:t
+{:
+    System.out.println(" factor take regla[31]");
+    listaReglas.add(" factor take regla[31]");
+    RESULT = t;
+:};
+
+factor ::= BRACKET_OPEN expresion:e BRACKET_CLOSE
+{:
+    System.out.println(" factor take regla[31]");
+    listaReglas.add(" factor take regla[31]");
+    RESULT = e;
+:};
+
+
+// End Expresion
+
+// Begin Take
+
+lista_constantes_suma ::= lista_constantes_suma:c COMA CONST_INT:i
+{:
+    System.out.println("lista_constantes regla[33]");
+    listaReglas.add("lista_constantes regla[33]");
+
+    NodoDistinto condicion = new NodoDistinto(new NodoIdentificador("contador"), new NodoConstante(0));
+
+    NodoExpresionBinaria operacion_resultado_constante;
+    operacion_resultado_constante = new NodoSuma(new NodoIdentificador("resultado"), new NodoConstante(Integer.parseInt(i)));
+    NodoAsignacion asignacion_resultado_suma = new NodoAsignacion(new NodoIdentificador("resultado"), operacion_resultado_constante);
+
+    NodoResta resta_contador = new NodoResta(new NodoIdentificador("contador"), new NodoConstante(1));
+    NodoAsignacion asignacion_contador = new NodoAsignacion(new NodoIdentificador("contador"), resta_contador);
+
+    List<NodoSentencia> lista_sentencias = new ArrayList<NodoSentencia>();
+
+    lista_sentencias.add(asignacion_resultado_suma);
+    lista_sentencias.add(asignacion_contador);
+
+    c.add(new NodoIf(condicion, lista_sentencias, null));
+
+    RESULT = c;
+
+:};
+
+lista_constantes_suma ::= CONST_INT:i
+{:
+    System.out.println("lista_constantes int regla[33]");
+    listaReglas.add("lista_constantes int regla[33]");
+
+    NodoDistinto condicion = new NodoDistinto(new NodoIdentificador("contador"), new NodoConstante(0));
+
+    NodoExpresionBinaria operacion_resultado_constante;
+    operacion_resultado_constante = new NodoSuma(new NodoIdentificador("resultado"), new NodoConstante(Integer.parseInt(i)));
+    NodoAsignacion asignacion_resultado_suma = new NodoAsignacion(new NodoIdentificador("resultado"), operacion_resultado_constante);
+
+    NodoResta resta_contador = new NodoResta(new NodoIdentificador("contador"), new NodoConstante(1));
+    NodoAsignacion asignacion_contador = new NodoAsignacion(new NodoIdentificador("contador"), resta_contador);
+
+    List<NodoSentencia> lista_sentencias = new ArrayList<NodoSentencia>();
+
+    lista_sentencias.add(asignacion_resultado_suma);
+    lista_sentencias.add(asignacion_contador);
+
+    sentencias_take = new ArrayList<NodoSentencia>();
+    sentencias_take.add(new NodoIf(condicion, lista_sentencias, null));
+
+    RESULT = sentencias_take;
+
+:};
+
+take::= TAKE BRACKET_OPEN SIG_MAS PUNTO_Y_COMA ID:i PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes_suma:lc SQR_BRACKET_CLOSE BRACKET_CLOSE
+{:
+    System.out.println("take regla[35]");
+    listaReglas.add("take regla[35]");
+    NodoAsignacion asignacion_id_constante = new NodoAsignacion(new NodoIdentificador("resultado"), new NodoConstante(0));
+    NodoAsignacion asignacion_contador_id = new NodoAsignacion(new NodoIdentificador("contador"), new NodoIdentificador(i));
+    lc.add(0, asignacion_contador_id);
+    lc.add(0, asignacion_id_constante);
+    RESULT = new NodoTake(lc);
+:};
+
+lista_constantes_resta ::= lista_constantes_resta:c COMA CONST_INT:i
+{:
+    System.out.println("lista_constantes regla[33]");
+    listaReglas.add("lista_constantes regla[33]");
+
+    NodoDistinto condicion = new NodoDistinto(new NodoIdentificador("contador"), new NodoConstante(0));
+
+    NodoExpresionBinaria operacion_resultado_constante;
+    operacion_resultado_constante = new NodoResta(new NodoIdentificador("resultado"), new NodoConstante(Integer.parseInt(i)));
+    NodoAsignacion asignacion_resultado_suma = new NodoAsignacion(new NodoIdentificador("resultado"), operacion_resultado_constante);
+
+    NodoResta resta_contador = new NodoResta(new NodoIdentificador("contador"), new NodoConstante(1));
+    NodoAsignacion asignacion_contador = new NodoAsignacion(new NodoIdentificador("contador"), resta_contador);
+
+    List<NodoSentencia> lista_sentencias = new ArrayList<NodoSentencia>();
+
+    lista_sentencias.add(asignacion_resultado_suma);
+    lista_sentencias.add(asignacion_contador);
+
+    c.add(new NodoIf(condicion, lista_sentencias, null));
+
+    RESULT = c;
+
+:};
+
+lista_constantes_resta ::= CONST_INT:i
+{:
+    System.out.println("lista_constantes int regla[33]");
+    listaReglas.add("lista_constantes int regla[33]");
+
+    NodoDistinto condicion = new NodoDistinto(new NodoIdentificador("contador"), new NodoConstante(0));
+
+    NodoExpresionBinaria operacion_resultado_constante;
+    operacion_resultado_constante = new NodoResta(new NodoIdentificador("resultado"), new NodoConstante(Integer.parseInt(i)));
+    NodoAsignacion asignacion_resultado_suma = new NodoAsignacion(new NodoIdentificador("resultado"), operacion_resultado_constante);
+
+    NodoResta resta_contador = new NodoResta(new NodoIdentificador("contador"), new NodoConstante(1));
+    NodoAsignacion asignacion_contador = new NodoAsignacion(new NodoIdentificador("contador"), resta_contador);
+
+    List<NodoSentencia> lista_sentencias = new ArrayList<NodoSentencia>();
+
+    lista_sentencias.add(asignacion_resultado_suma);
+    lista_sentencias.add(asignacion_contador);
+
+    sentencias_take = new ArrayList<NodoSentencia>();
+    sentencias_take.add(new NodoIf(condicion, lista_sentencias, null));
+
+    RESULT = sentencias_take;
+
+:};
+
+take::= TAKE BRACKET_OPEN SIG_MENOS PUNTO_Y_COMA ID:i PUNTO_Y_COMA SQR_BRACKET_OPEN lista_constantes_resta:lc SQR_BRACKET_CLOSE BRACKET_CLOSE
+{:
+    System.out.println("take regla[35]");
+    listaReglas.add("take regla[35]");
+    NodoAsignacion asignacion_id_constante = new NodoAsignacion(new NodoIdentificador("resultado"), new NodoConstante(0));
+    NodoAsignacion asignacion_contador_id = new NodoAsignacion(new NodoIdentificador("contador"), new NodoIdentificador(i));
+    lc.add(0, asignacion_contador_id);
+    lc.add(0, asignacion_id_constante);
+    RESULT = new NodoTake(lc);
+:};
+
+// End Take
+

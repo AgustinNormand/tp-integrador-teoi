@@ -1,0 +1,35 @@
+DECLARE.SECTION
+	  [a1,a2,a3] := [INT,INT,INT]
+    [b1,b2,b3] := [FLOAT,FLOAT,FLOAT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a1 ::= 2
+a2 ::= 3
+
+a3 ::= (a1 * a2) //* MULTIPLICACION SIMPLE de INT *//
+
+write a3
+
+a3 ::= (a1 * 2) * (a2 * 1) //* MULTIPLICACION COMPLEJA de INT *//
+
+write a3
+
+b1 ::= 1.5
+
+b2 ::= 1.5
+
+b3 ::= b1 * b2 //* MULTIPLICACION SIMPLE de FLOAT *//
+
+write b3
+
+b3 ::= (b1 * 0.5) * (b2 * 0.5) //* MULTIPLICACION COMPLEJA de FLOAT *//
+
+write b3
+
+
+
+ENDPROGRAM.SECTION
+
+

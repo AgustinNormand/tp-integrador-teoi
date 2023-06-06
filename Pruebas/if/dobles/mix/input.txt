@@ -1,0 +1,21 @@
+DECLARE.SECTION
+	[a,b,c,d] := [INT,INT,INT,INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a ::= 1
+b ::= 2
+c ::= 3
+d ::= 4
+
+if ((a <> b) and (c > d)) {
+    write "a dist de b o c mayor que d"
+}
+
+if ((a <> b) or (c > d)) {
+    write "a dist de b o c mayor que d"
+}
+
+
+ENDPROGRAM.SECTION

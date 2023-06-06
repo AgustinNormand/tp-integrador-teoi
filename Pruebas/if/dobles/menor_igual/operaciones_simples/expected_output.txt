@@ -1,0 +1,5 @@
+a3 menor o igual que 60
+a3 menor o igual que 50
+a3 menor o igual que 70
+a3 menor o igual que 50
+a3 no es menor o igual que 3

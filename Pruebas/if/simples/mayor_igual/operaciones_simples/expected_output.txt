@@ -1,0 +1,5 @@
+a3 mayor o igual que 1
+a3 mayor o igual que 50
+a3 mayor o igual que 3
+a3 mayor o igual que 50
+a3 no es mayor o igual que 300

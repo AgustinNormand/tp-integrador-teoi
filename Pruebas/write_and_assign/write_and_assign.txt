@@ -1,0 +1,33 @@
+DECLARE.SECTION
+  	[a1] := [INT]
+    [variableString] := [STRING]
+    [b1] := [FLOAT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+//* WRITE de CONSTANTES STRING, CONSTANTES FLOAT e CONSTANTES INT*//
+
+write "Hola Mundo"
+
+write 30.05
+
+write 2023
+
+//* ASIGNACIONES STRING, FLOAT, INT *//
+
+variableString ::= "Desde Assembler" 
+
+b1 ::= 1.5
+
+a1 ::= 20 
+
+//* WRITE de VARIABLES STRING, FLOAT e INT *//
+
+write variableString
+
+write b1
+
+write a1
+
+ENDPROGRAM.SECTION

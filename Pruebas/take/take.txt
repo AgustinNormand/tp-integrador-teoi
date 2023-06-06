@@ -1,0 +1,26 @@
+DECLARE.SECTION
+  	[a1] := [INT]
+
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a1 ::= 3
+
+a1 ::= TAKE(+; a1; [1,2,3,4,5])
+
+write a1
+
+a1 ::= 1
+
+a1 ::= TAKE(+; a1; [3])
+
+write a1
+
+a1 ::= 10
+
+a1 ::= TAKE(+; a1; [3])
+
+write a1
+
+ENDPROGRAM.SECTION

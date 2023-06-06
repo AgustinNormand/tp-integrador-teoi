@@ -1,0 +1,55 @@
+DECLARE.SECTION
+  	[a1] := [INT]
+  	[b1] := [FLOAT]
+    [z,a,b,c,d,e,f] := [INT,INT,INT,INT,INT,INT,INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+write "Hola Mundo"
+
+write 30.05
+
+write 2023
+
+//* WRITE de CONSTANTES STRING, CONSTANTES FLOAT e CONSTANTES INT*//
+
+b1 ::= 1.5
+
+write b1
+
+//* WRITE de VARIABLE FLOAT *//
+
+a1 ::= 3
+
+a1 ::= TAKE(+; a1; [1,2,3,4,5]) //* Deberia dar como resultado 6. 1 mas 2 mas 3 *//
+
+write a1
+
+//* Instruccion de TAKE y WRITE de VARIABLE INT *//
+
+while ((a1 >= 6) and (a1 <= 10)) {
+  if ((a1 == 7) or (a1 == 9)){
+    write a1
+  }
+  a1 ::= a1 + 1
+}
+
+//* Instruccion WHILE *//
+//* Instruccion IF *//
+//* Condiciones MAYOR IGUAL, MENOR IGUAL, AND, OR, IGUAL *//
+
+a ::= 1
+b ::= 2
+c ::= 3
+d ::= 4
+e ::= 5
+f ::= 6
+
+z ::= a + b * c - d / (e + f) + 20
+
+write z
+
+//* SUMA, RESTA, MULTIPLICACION, DIVISION *//
+
+ENDPROGRAM.SECTION

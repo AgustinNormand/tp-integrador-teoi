@@ -1,0 +1,4 @@
+a3 menor que 100
+a3 menor que 250
+a3 no es menor que 50
+a3 no es menor que 1

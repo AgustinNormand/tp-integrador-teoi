@@ -1,0 +1,39 @@
+DECLARE.SECTION
+	[a3] := [INT]
+ENDDECLARE.SECTION
+
+PROGRAM.SECTION
+
+a3 ::= 50
+
+if (a3 < 100) { //* IF SIMPLES por MAYOR SIN ELSE, CASO VERDADERO *//
+    write "a3 menor que 100"
+}
+
+if (a3 < 50) { //* IF SIMPLES por MAYOR SIN ELSE, CASO IGUAL *//
+    write "a3 menor que 50"
+}
+
+if (a3 < 10) { //* IF SIMPLES por MENOR SIN ELSE, CASO FALSO *//
+    write "a3 mayor que 10"
+}
+
+if (a3 < 250) { //* IF SIMPLES por MENOR CON ELSE, CASO VERDADERO *//
+    write "a3 menor que 250"
+} else{
+    write "a3 no es menor que 250"
+}
+
+if (a3 < 50) { //* IF SIMPLES por MENOR CON ELSE, CASO IGUAL *//
+    write "a3 menor que 50"
+} else{
+    write "a3 no es menor que 50"
+}
+
+if (a3 < 1) { //* IF SIMPLES por MENOR CON ELSE, CASO FALSO *//
+    write "a3 menor que 1"
+} else{
+    write "a3 no es menor que 1"
+}
+
+ENDPROGRAM.SECTION
